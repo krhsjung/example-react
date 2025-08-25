@@ -1,0 +1,5 @@
+{
+  "extends": "@example/config-typescript/react-library.json",
+  "include": ["."],
+  "exclude": ["node_modules"]
+}
