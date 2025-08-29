@@ -6,7 +6,9 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./index.ts",
-    "./componeents": "./components/index.ts"
+    "./componeents": "./components/index.ts",
+    "./styles/global": "./styles/global.css",
+    "./styles/login": "./styles/login.css"
   },
   "license": "MIT",
   "scripts": {

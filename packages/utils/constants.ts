@@ -62,7 +62,7 @@ export const REGEX_PATTERNS = {
 // 환경 변수 기본값
 export const ENV_DEFAULTS = {
   NODE_ENV: "local",
-  API_BASE_URL: "http://localhost:3000/api",
+  API_BASE_URL: "https://hsjun.asuscomm.com/api",
   APP_NAME: "Next.js Monorepo",
   APP_VERSION: "1.0.0",
 } as const;
