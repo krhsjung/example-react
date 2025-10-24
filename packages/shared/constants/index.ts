@@ -1,7 +1,7 @@
-// API 관련 상수
-export const API_ENDPOINTS = {
-  USERS: "/api/users",
-  AUTH: "/api/auth",
+// 공통 상수들을 여기에 추가
+export const APP_CONSTANTS = {
+  DEFAULT_TIMEOUT: 3000,
+  MAX_RETRY_COUNT: 3,
 } as const;
 
 // 페이지네이션 관련 상수

@@ -4,13 +4,18 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "local": "vite --clearScreen false",
+    "local": "vite --mode localhost --clearScreen false",
+    "dev": "vite --mode development --clearScreen false",
     "build": "tsc && vite build",
+    "build:dev": "tsc && vite build --mode development",
+    "build:prod": "tsc && vite build --mode production",
     "preview": "vite preview",
     "lint": "eslint \"src/**/*.ts\""
   },
   "dependencies": {
+    "@example/shared": "workspace:*",
     "@example/ui": "workspace:*",
+    "@example/utils": "workspace:*",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
