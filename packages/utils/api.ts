@@ -18,6 +18,7 @@ export const createApiClient = (baseUrl: string) => {
     const url = `${baseUrl}${endpoint}`;
 
     const response = await fetch(url, {
+      credentials: "include",
       headers: {
         "Content-Type": contentType,
         ...options.headers,
