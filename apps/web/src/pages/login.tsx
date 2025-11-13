@@ -1,7 +1,9 @@
-import React from "react";
-import { LoginForm } from "@example/ui";
+import React, { useState } from "react";
+import { LoginForm, SignupPopup } from "@example/ui";
 import { SnsSignInFlowType, SnsProvider } from "@example/shared";
 import { env, apiConfig, appConfig } from "../config";
+import { createApiClient } from "@example/utils/api";
+import { LoginProvider } from "@example/shared";
 
 interface LoginPageProps {
   snsSignInFlowType?: SnsSignInFlowType;
@@ -12,20 +14,18 @@ const LoginPage: React.FC<LoginPageProps> = ({
   snsSignInFlowType,
   onLoginSuccess,
 }) => {
-  const handleLogin = async (email: string, password: string) => {
-    const url = `${apiConfig.authAPI}/login`;
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-      credentials: "include",
-    });
+  const [showSignupPopup, setShowSignupPopup] = useState(false);
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Login failed");
+  const apiClient = createApiClient(apiConfig.baseURL);
+
+  const handleLogin = async (email: string, password: string) => {
+    try {
+      await apiClient.post("/auth/login", { email, password });
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
+      return;
     }
 
     onLoginSuccess?.();
@@ -87,27 +87,64 @@ const LoginPage: React.FC<LoginPageProps> = ({
       window.addEventListener("message", onMessage);
 
       const timer = setInterval(() => {
-        if (popup && popup.closed) {
-          if (isResolved) return;
-          isResolved = true;
-          cleanup();
-          console.log("Popup was closed by user");
-          resolve(); // 사용자가 닫은 것도 정상 완료로 처리
+        try {
+          if (popup && popup.closed) {
+            if (isResolved) return;
+            isResolved = true;
+            cleanup();
+            console.log("Popup was closed by user");
+            resolve(); // 사용자가 닫은 것도 정상 완료로 처리
+          }
+        } catch (error) {
+          // COOP 정책으로 인해 popup.closed 접근이 차단될 수 있음
+          // 이 경우 에러를 무시하고 계속 진행
         }
       }, 1_000);
     });
   };
 
+  const handleSignup = async (
+    email: string,
+    password: string,
+    name: string
+  ): Promise<void> => {
+    try {
+      await apiClient.post("/user", {
+        email,
+        password,
+        name,
+        provider: LoginProvider.EMAIL,
+      });
+
+      await apiClient.post("/auth/login", { email, password });
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
+      return;
+    }
+
+    // 회원가입 로직 구현
+    setShowSignupPopup(false);
+    onLoginSuccess?.();
+  };
+
   return (
-    <LoginForm
-      appName={appConfig.name}
-      onLogin={handleLogin}
-      onSnsLogin={handleSnsLogin}
-      onSignUp={() => {
-        console.log(`Show Signing up popup`);
-      }}
-      snsSignInFlowType={snsSignInFlowType}
-    />
+    <>
+      <LoginForm
+        appName={appConfig.name}
+        onLogin={handleLogin}
+        onSnsLogin={handleSnsLogin}
+        onSignUp={() => setShowSignupPopup(true)}
+        snsSignInFlowType={snsSignInFlowType}
+      />
+      <SignupPopup
+        isOpen={showSignupPopup}
+        onClose={() => setShowSignupPopup(false)}
+        onSignUp={handleSignup}
+        onSnsLogin={handleSnsLogin}
+      />
+    </>
   );
 };
 

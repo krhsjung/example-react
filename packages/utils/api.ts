@@ -27,10 +27,13 @@ export const createApiClient = (baseUrl: string) => {
     });
 
     if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      const message = errorData?.message || response.statusText;
+
       throw new ApiError(
-        `API Error: ${response.statusText}`,
+        message,
         response.status,
-        await response.json().catch(() => null)
+        errorData
       );
     }
 

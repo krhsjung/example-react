@@ -114,7 +114,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({
           className="login-form-button"
           onClick={onLogin ? () => onLogin(LoginProvider.EMAIL) : undefined}
           loading={loadingProvider === LoginProvider.EMAIL}
-          disabled={!email || !password || loadingProvider !== null}
+          // disabled={loadingProvider !== null}
         >
           Log In
         </Button>
