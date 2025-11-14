@@ -195,12 +195,9 @@
     padding-left: 40px;
     padding-right: 40px;
   }
-  /* .login-header {
-  }
   .login-body {
+    justify-content: center; /* 수직 중앙 정렬 */
   }
-  .login-footer {
-  } */
 }
 
 /* 데스크탑 (1280px 이상) */
@@ -211,12 +208,9 @@
     padding-left: 48px;
     padding-right: 48px;
   }
-  /* .login-header {
-  }
   .login-body {
+    justify-content: center; /* 수직 중앙 정렬 */
   }
-  .login-footer {
-  } */
 }
 
 /* Dark mode support */
