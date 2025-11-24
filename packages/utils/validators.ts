@@ -19,26 +19,26 @@ export const isUrl = (url: string): boolean => {
 
 export const validatePassword = (
   password: string,
+  t: (key: string) => string
 ): {
   isValid: boolean;
   errors: string[];
 } => {
   const errors: string[] = [];
-
   if (password.length < 8) {
-    errors.push("비밀번호는 8자 이상이어야 합니다.");
+    errors.push(t("auth.validation.password_min_length"));
   }
 
   if (!/[A-Z]/.test(password)) {
-    errors.push("대문자를 포함해야 합니다.");
+    errors.push(t("auth.validation.password_require_uppercase"));
   }
 
   if (!/[a-z]/.test(password)) {
-    errors.push("소문자를 포함해야 합니다.");
+    errors.push(t("auth.validation.password_require_lowercase"));
   }
 
   if (!/\d/.test(password)) {
-    errors.push("숫자를 포함해야 합니다.");
+    errors.push(t("auth.validation.password_require_number"));
   }
 
   return {

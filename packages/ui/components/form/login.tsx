@@ -8,6 +8,7 @@ import {
 } from "@example/ui";
 import { SnsProvider, LoginProvider, SnsSignInFlowType } from "@example/shared";
 import { sha256 } from "@example/utils";
+import { useTranslation } from "@example/i18n";
 import "../../styles/login.css";
 import GoogleIcon from "../../icon/google.svg?react";
 import AppleIcon from "../../icon/apple.svg?react";
@@ -36,11 +37,14 @@ const Header: React.FC<LogoTextProps> = ({ logoText }) => {
 
 /* Body */
 const DescriptionSection = () => {
+  const { t } = useTranslation();
   return (
     <div className="login-body-description-section" data-name="Description">
-      <div className="login-body-description-title">Log in to Your Account</div>
+      <div className="login-body-description-title">
+        {t("auth.login.title")}
+      </div>
       <div className="login-body-description-subtitle">
-        Please enter your email and password to log in, or use a social account.
+        {t("auth.login.subtitle")}
       </div>
     </div>
   );
@@ -91,17 +95,18 @@ const LoginSection: React.FC<LoginSectionProps> = ({
   onSignUp,
   loadingProvider,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="login-form-section" data-name="Login In Form Section">
       <div className="login-form-input-section">
         <LoginInput
-          placeholder={"Email"}
-          type={"email"}
+          placeholder={t("auth.placeholder.email_placeholder")}
+          type="email"
           value={email}
           onChange={onEmailChange}
         />
         <LoginInput
-          placeholder={"Password"}
+          placeholder={t("auth.placeholder.password_placeholder")}
           type={"password"}
           value={password}
           onChange={onPasswordChange}
@@ -116,7 +121,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({
           loading={loadingProvider === LoginProvider.EMAIL}
           // disabled={loadingProvider !== null}
         >
-          Log In
+          {t("common.login")}
         </Button>
         <Button
           type="button"
@@ -125,7 +130,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({
           onClick={onSignUp}
           disabled={loadingProvider !== null}
         >
-          Sign Up
+          {t("common.signup")}
         </Button>
       </div>
     </div>
@@ -133,10 +138,11 @@ const LoginSection: React.FC<LoginSectionProps> = ({
 };
 
 const Divider = () => {
+  const { t } = useTranslation();
   return (
     <div className="login-divider-section" data-name="Divider">
       <div className="login-divider-line" />
-      <div className="login-divider-text">or continue with</div>
+      <div className="login-divider-text">{t("auth.login.continue_with")}</div>
       <div className="login-divider-line" />
     </div>
   );
@@ -151,6 +157,7 @@ const SnsButtonSection: React.FC<SnsButtonSectionProps> = ({
   onSnsLogin,
   loadingProvider,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="login-sns-button-section" data-name="SNS buttons">
       <SnsLoginButton
@@ -162,7 +169,7 @@ const SnsButtonSection: React.FC<SnsButtonSectionProps> = ({
         }
         icon={<GoogleIcon width={16} height={16} />}
       >
-        Continue with Google
+        {t("auth.oauth.google")}
       </SnsLoginButton>
 
       <SnsLoginButton
@@ -174,16 +181,17 @@ const SnsButtonSection: React.FC<SnsButtonSectionProps> = ({
         }
         icon={<AppleIcon width={16} height={16} />}
       >
-        Continue with Apple
+        {t("auth.oauth.apple")}
       </SnsLoginButton>
     </div>
   );
 };
 
 const RememberMeSection = ({}) => {
+  const { t } = useTranslation();
   return (
     <div className="login-remember-me-section">
-      <Checkbox children={"Remember me"} />
+      <Checkbox children={t("auth.login.remember_me")} />
     </div>
   );
 };

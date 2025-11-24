@@ -197,6 +197,7 @@
   }
   .login-body {
     justify-content: center; /* 수직 중앙 정렬 */
+    width: 442px;
   }
 }
 
@@ -210,6 +211,7 @@
   }
   .login-body {
     justify-content: center; /* 수직 중앙 정렬 */
+    width: 442px;
   }
 }
 

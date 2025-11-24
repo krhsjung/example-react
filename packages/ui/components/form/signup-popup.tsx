@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Checkbox, Input, SnsLoginButton } from "@example/ui";
+import { useTranslation } from "@example/i18n";
 import "../../styles/signup-popup.css";
 import GoogleIcon from "../../icon/google.svg?react";
 import AppleIcon from "../../icon/apple.svg?react";
@@ -20,30 +21,36 @@ const Header = ({
 }: {
   onClose: () => void;
   disabled: boolean;
-}) => (
-  <div className="signup-popup-header" data-name="Header">
-    <button
-      type="button"
-      className="signup-popup-close-button"
-      onClick={onClose}
-      disabled={disabled}
-      aria-label="Close popup"
-    >
-      ×
-    </button>
-  </div>
-);
+}) => {
+  const { t } = useTranslation();
+  return (
+    <div className="signup-popup-header" data-name="Header">
+      <button
+        type="button"
+        className="signup-popup-close-button"
+        onClick={onClose}
+        disabled={disabled}
+        aria-label={t("common.close_popup")}
+      >
+        ×
+      </button>
+    </div>
+  );
+};
 
-const BodyHeader = () => (
-  <div className="signup-popup-body-header" data-name="Header">
-    <div className="signup-popup-body-header-title">
-      <p>Create Your Account</p>
+const BodyHeader = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="signup-popup-body-header" data-name="Header">
+      <div className="signup-popup-body-header-title">
+        <p>{t("auth.signup.title")}</p>
+      </div>
+      <div className="signup-popup-body-header-subtitle">
+        <p>{t("auth.signup.subtitle")}</p>
+      </div>
     </div>
-    <div className="signup-popup-body-header-subtitle">
-      <p>Join Example to access exclusive features.</p>
-    </div>
-  </div>
-);
+  );
+};
 
 const DividerLine = () => (
   <div className="signup-popup-divider-line">
@@ -71,99 +78,108 @@ const SignupSection: React.FC<{
   isLoading: boolean;
   isFormValid: boolean;
   onSubmit: () => void;
-}> = ({ formData, onFormChange, isLoading, isFormValid, onSubmit }) => (
-  <div className="signup-popup-form-section" data-name="Form Section">
-    <div className="signup-popup-field">
-      <Input
-        type="email"
-        placeholder="Enter your email"
-        value={formData.email}
-        onChange={(value) => onFormChange("email", value)}
-        disabled={isLoading}
-      />
-      <Input
-        type="password"
-        placeholder="Enter your password"
-        value={formData.password}
-        onChange={(value) => onFormChange("password", value)}
-        showPasswordToggle
-        disabled={isLoading}
-      />
-      <Input
-        type="password"
-        placeholder="Confirm your password"
-        value={formData.confirmPassword}
-        onChange={(value) => onFormChange("confirmPassword", value)}
-        showPasswordToggle
-        disabled={isLoading}
-      />
-      <Input
-        type="text"
-        placeholder="Enter your name"
-        value={formData.name}
-        onChange={(value) => onFormChange("name", value)}
-        disabled={isLoading}
-      />
-    </div>
+}> = ({ formData, onFormChange, isLoading, isFormValid, onSubmit }) => {
+  const { t } = useTranslation();
+  return (
+    <div className="signup-popup-form-section" data-name="Form Section">
+      <div className="signup-popup-field">
+        <Input
+          type="email"
+          placeholder={t("auth.placeholder.email_placeholder")}
+          value={formData.email}
+          onChange={(value) => onFormChange("email", value)}
+          disabled={isLoading}
+        />
+        <Input
+          type="password"
+          placeholder={t("auth.placeholder.password_placeholder")}
+          value={formData.password}
+          onChange={(value) => onFormChange("password", value)}
+          showPasswordToggle
+          disabled={isLoading}
+        />
+        <Input
+          type="password"
+          placeholder={t("auth.placeholder.confirm_password_placeholder")}
+          value={formData.confirmPassword}
+          onChange={(value) => onFormChange("confirmPassword", value)}
+          showPasswordToggle
+          disabled={isLoading}
+        />
+        <Input
+          type="text"
+          placeholder={t("auth.placeholder.name_placeholder")}
+          value={formData.name}
+          onChange={(value) => onFormChange("name", value)}
+          disabled={isLoading}
+        />
+      </div>
 
-    <div className="signup-popup-checkbox">
-      <Checkbox
-        checked={formData.agreedToTerms}
-        onChange={(value) => onFormChange("agreedToTerms", value)}
+      <div className="signup-popup-checkbox">
+        <Checkbox
+          checked={formData.agreedToTerms}
+          onChange={(value) => onFormChange("agreedToTerms", value)}
+        >
+          {t("auth.signup.agree_to_terms")}
+        </Checkbox>
+      </div>
+      <Button
+        background="#ff5733"
+        onClick={onSubmit}
+        disabled={isLoading || !isFormValid}
       >
-        I agree to the terms and conditions
-      </Checkbox>
+        {t("common.signup")}
+      </Button>
     </div>
-    <Button
-      background="#ff5733"
-      onClick={onSubmit}
-      disabled={isLoading || !isFormValid}
-    >
-      Sign Up
-    </Button>
-  </div>
-);
+  );
+};
 
-const Divider = () => (
-  <div className="signup-popup-divider" data-name="Divider">
-    <DividerLine />
-    <div className="signup-popup-divider-text">
-      <p>or continue with</p>
+const Divider = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="signup-popup-divider" data-name="Divider">
+      <DividerLine />
+      <div className="signup-popup-divider-text">
+        <p>{t("auth.signup.continue_with")}</p>
+      </div>
+      <DividerLine />
     </div>
-    <DividerLine />
-  </div>
-);
+  );
+};
 
 const SnsButtons: React.FC<{
   onSnsLogin?: (provider: SnsProvider) => Promise<void> | void;
   loadingProvider?: SnsProvider | null;
-}> = ({ onSnsLogin, loadingProvider }) => (
-  <div className="signup-popup-sns-buttons" data-name="SNS buttons">
-    <SnsLoginButton
-      provider={SnsProvider.GOOGLE}
-      onLogin={onSnsLogin}
-      loading={loadingProvider === SnsProvider.GOOGLE}
-      disabled={
-        loadingProvider !== null && loadingProvider !== SnsProvider.GOOGLE
-      }
-      icon={<GoogleIcon width={16} height={16} />}
-    >
-      Continue with Google
-    </SnsLoginButton>
+}> = ({ onSnsLogin, loadingProvider }) => {
+  const { t } = useTranslation();
+  return (
+    <div className="signup-popup-sns-buttons" data-name="SNS buttons">
+      <SnsLoginButton
+        provider={SnsProvider.GOOGLE}
+        onLogin={onSnsLogin}
+        loading={loadingProvider === SnsProvider.GOOGLE}
+        disabled={
+          loadingProvider !== null && loadingProvider !== SnsProvider.GOOGLE
+        }
+        icon={<GoogleIcon width={16} height={16} />}
+      >
+        {t("auth.oauth.google")}
+      </SnsLoginButton>
 
-    <SnsLoginButton
-      provider={SnsProvider.APPLE}
-      onLogin={onSnsLogin}
-      loading={loadingProvider === SnsProvider.APPLE}
-      disabled={
-        loadingProvider !== null && loadingProvider !== SnsProvider.APPLE
-      }
-      icon={<AppleIcon width={16} height={16} />}
-    >
-      Continue with Apple
-    </SnsLoginButton>
-  </div>
-);
+      <SnsLoginButton
+        provider={SnsProvider.APPLE}
+        onLogin={onSnsLogin}
+        loading={loadingProvider === SnsProvider.APPLE}
+        disabled={
+          loadingProvider !== null && loadingProvider !== SnsProvider.APPLE
+        }
+        icon={<AppleIcon width={16} height={16} />}
+      >
+        {t("auth.oauth.apple")}
+      </SnsLoginButton>
+    </div>
+  );
+};
 
 const Body: React.FC<{
   formData: FormData;
@@ -207,11 +223,12 @@ export const SignupPopup: React.FC<SignupPopupProps> = ({
   onSignUp,
   onSnsLogin,
 }) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    name: "",
+    email: "test@test.com",
+    password: "Test2022@!",
+    confirmPassword: "Test2022@!",
+    name: "tester",
     agreedToTerms: false,
   });
   const [loadingProvider, setLoadingProvider] = useState<SnsProvider | null>(
@@ -224,10 +241,10 @@ export const SignupPopup: React.FC<SignupPopupProps> = ({
 
   const resetForm = () => {
     setFormData({
-      email: "",
-      password: "",
-      confirmPassword: "",
-      name: "",
+      email: "test@test.com",
+      password: "Test2022@!",
+      confirmPassword: "Test2022@!",
+      name: "tester",
       agreedToTerms: false,
     });
   };
@@ -243,18 +260,18 @@ export const SignupPopup: React.FC<SignupPopupProps> = ({
     const { email, password, confirmPassword, name } = formData;
 
     if (!isEmail(email)) {
-      alert("Please enter a valid email address");
+      alert(t("auth.validation.email_invalid"));
       return;
     }
 
-    const passwordValidation = validatePassword(password);
+    const passwordValidation = validatePassword(password, t);
     if (!passwordValidation.isValid) {
       alert(passwordValidation.errors.join("\n"));
       return;
     }
 
     if (password !== confirmPassword) {
-      alert("Passwords don't match");
+      alert(t("auth.validation.passwords_not_match"));
       return;
     }
 

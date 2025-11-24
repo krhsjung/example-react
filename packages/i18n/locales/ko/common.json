@@ -1,0 +1,12 @@
+{
+  "application_name": "리액트 예제",
+  "login": "로그인",
+  "logout": "로그아웃",
+  "signup": "회원가입",
+  "email": "이메일",
+  "password": "비밀번호",
+  "submit": "제출",
+  "cancel": "취소",
+  "close": "닫기",
+  "close_popup": "팝업 닫기"
+}

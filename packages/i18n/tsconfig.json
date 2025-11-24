@@ -1,0 +1,9 @@
+{
+  "extends": "@example/config-typescript/react-library.json",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"]
+}

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { LoginForm, SignupPopup } from "@example/ui";
 import { SnsSignInFlowType, SnsProvider } from "@example/shared";
-import { env, apiConfig, appConfig } from "../config";
-import { createApiClient } from "@example/utils/api";
+import { useTranslation } from "@example/i18n";
+import { env, apiConfig } from "../config";
+import { ApiError, createApiClient } from "@example/utils/api";
 import { LoginProvider } from "@example/shared";
+import "@example/i18n";
 
 interface LoginPageProps {
   snsSignInFlowType?: SnsSignInFlowType;
@@ -14,6 +16,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
   snsSignInFlowType,
   onLoginSuccess,
 }) => {
+  const { t } = useTranslation();
   const [showSignupPopup, setShowSignupPopup] = useState(false);
 
   const apiClient = createApiClient(apiConfig.baseURL);
@@ -22,8 +25,9 @@ const LoginPage: React.FC<LoginPageProps> = ({
     try {
       await apiClient.post("/auth/login", { email, password });
     } catch (error) {
-      if (error instanceof Error) {
-        alert(error.message);
+      if (error instanceof ApiError) {
+        const serverError = JSON.parse(error.message);
+        alert(t(`errors.server.${serverError.id}`, serverError.params || {}));
       }
       return;
     }
@@ -36,6 +40,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
 
     const url = `${apiConfig.authAPI}/${provider}?flow=${snsSignInFlowType}&origin=${encodeURIComponent(window.location.origin)}`;
     console.log(url);
+
     // 리다이렉트 방식
     if (snsSignInFlowType === SnsSignInFlowType.REDIRECT) {
       window.location.href = url;
@@ -118,8 +123,11 @@ const LoginPage: React.FC<LoginPageProps> = ({
 
       await apiClient.post("/auth/login", { email, password });
     } catch (error) {
-      if (error instanceof Error) {
-        alert(error.message);
+      if (error instanceof ApiError) {
+        const serverError = JSON.parse(error.message);
+        console.log(serverError);
+
+        alert(t(`errors.server.${serverError.id}`, serverError.params || {}));
       }
       return;
     }
@@ -132,7 +140,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
   return (
     <>
       <LoginForm
-        appName={appConfig.name}
+        appName={t("common.application_name")}
         onLogin={handleLogin}
         onSnsLogin={handleSnsLogin}
         onSignUp={() => setShowSignupPopup(true)}

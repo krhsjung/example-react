@@ -1,0 +1,13 @@
+{
+  "general": "An error occurred",
+  "networkError": "A network error occurred",
+  "tryAgain": "Please try again",
+  "server": {
+    "auth_credentials_invalid": "Invalid email or password",
+    "auth_provider_unsupported": "Unsupported auth provider",
+    "auth_session_not_found": "Session not found",
+    "auth_session_invalid": "Invalid session",
+    "user_not_found": "User with {{id}} not found",
+    "user_already_exists": "User with {{fields}} already exists"
+  }
+}

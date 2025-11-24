@@ -1,16 +1,21 @@
 import { createRoot } from "react-dom/client";
 import { useState, useEffect } from "react";
+import "@example/i18n";
 
 import LoginPage from "./pages/login";
 import Home from "./pages/home";
 import { createApiClient } from "@example/utils/api";
 import { SnsSignInFlowType } from "@example/shared";
-import { apiConfig, appConfig } from "./config";
+import { useTranslation } from "@example/i18n";
+import { apiConfig } from "./config";
 
 type Page = "home" | "login";
 
 const App = () => {
-  document.title = appConfig.name;
+  const { t } = useTranslation();
+
+  // 언어 변경 시 컴포넌트가 리렌더링되면서 자동으로 업데이트됨
+  document.title = t("common.application_name");
 
   const [currentPage, setCurrentPage] = useState<Page>("login");
   const [user, setUser] = useState<any>(null);
@@ -53,7 +58,7 @@ const App = () => {
   };
 
   if (checkingAuth) {
-    return <div>checking...</div>;
+    return <div></div>;
   }
 
   if (currentPage === "login") {

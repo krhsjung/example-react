@@ -20,6 +20,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@example/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
       '@example/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -75,10 +78,35 @@ importers:
 
   packages/config-typescript: {}
 
+  packages/i18n:
+    dependencies:
+      i18next:
+        specifier: ^25.6.2
+        version: 25.6.2(typescript@5.9.2)
+      i18next-browser-languagedetector:
+        specifier: ^8.2.0
+        version: 8.2.0
+      react:
+        specifier: ^19.1.1
+        version: 19.1.1
+      react-i18next:
+        specifier: ^15.1.3
+        version: 15.7.4(i18next@25.6.2(typescript@5.9.2))(react@19.1.1)(typescript@5.9.2)
+    devDependencies:
+      '@example/config-typescript':
+        specifier: workspace:*
+        version: link:../config-typescript
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.2
+
   packages/shared: {}
 
   packages/ui:
     dependencies:
+      '@example/i18n':
+        specifier: workspace:*
+        version: link:../i18n
       '@example/shared':
         specifier: workspace:*
         version: link:../shared
@@ -193,6 +221,10 @@ packages:
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
+
+  '@babel/runtime@7.28.4':
+    resolution: {integrity: sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==}
+    engines: {node: '>=6.9.0'}
 
   '@babel/template@7.27.2':
     resolution: {integrity: sha512-LPDZ85aEJyYSd18/DkjNh4/y1ntkE5KwUHWTiqgRxruuZL2F1yuHligVHLvcHY2vMHXttKFpJn6LwfI7cw7ODw==}
@@ -959,6 +991,20 @@ packages:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
 
+  html-parse-stringify@3.0.1:
+    resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
+
+  i18next-browser-languagedetector@8.2.0:
+    resolution: {integrity: sha512-P+3zEKLnOF0qmiesW383vsLdtQVyKtCNA9cjSoKCppTKPQVfKd2W8hbVo5ZhNJKDqeM7BOcvNoKJOjpHh4Js9g==}
+
+  i18next@25.6.2:
+    resolution: {integrity: sha512-0GawNyVUw0yvJoOEBq1VHMAsqdM23XrHkMtl2gKEjviJQSLVXsrPqsoYAxBEugW5AB96I2pZkwRxyl8WZVoWdw==}
+    peerDependencies:
+      typescript: ^5
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
@@ -1145,6 +1191,22 @@ packages:
     peerDependencies:
       react: ^19.1.1
 
+  react-i18next@15.7.4:
+    resolution: {integrity: sha512-nyU8iKNrI5uDJch0z9+Y5XEr34b0wkyYj3Rp+tfbahxtlswxSCjcUL9H0nqXo9IR3/t5Y5PKIA3fx3MfUyR9Xw==}
+    peerDependencies:
+      i18next: '>= 23.4.0'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+      typescript: ^5
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+      typescript:
+        optional: true
+
   react-refresh@0.17.0:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}
     engines: {node: '>=0.10.0'}
@@ -1321,6 +1383,10 @@ packages:
       yaml:
         optional: true
 
+  void-elements@3.1.0:
+    resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
+    engines: {node: '>=0.10.0'}
+
   which@2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
     engines: {node: '>= 8'}
@@ -1432,6 +1498,8 @@ snapshots:
     dependencies:
       '@babel/core': 7.28.3
       '@babel/helper-plugin-utils': 7.27.1
+
+  '@babel/runtime@7.28.4': {}
 
   '@babel/template@7.27.2':
     dependencies:
@@ -2160,6 +2228,20 @@ snapshots:
 
   has-flag@4.0.0: {}
 
+  html-parse-stringify@3.0.1:
+    dependencies:
+      void-elements: 3.1.0
+
+  i18next-browser-languagedetector@8.2.0:
+    dependencies:
+      '@babel/runtime': 7.28.4
+
+  i18next@25.6.2(typescript@5.9.2):
+    dependencies:
+      '@babel/runtime': 7.28.4
+    optionalDependencies:
+      typescript: 5.9.2
+
   ignore@5.3.2: {}
 
   ignore@7.0.5: {}
@@ -2313,6 +2395,15 @@ snapshots:
       react: 19.1.1
       scheduler: 0.26.0
 
+  react-i18next@15.7.4(i18next@25.6.2(typescript@5.9.2))(react@19.1.1)(typescript@5.9.2):
+    dependencies:
+      '@babel/runtime': 7.28.4
+      html-parse-stringify: 3.0.1
+      i18next: 25.6.2(typescript@5.9.2)
+      react: 19.1.1
+    optionalDependencies:
+      typescript: 5.9.2
+
   react-refresh@0.17.0: {}
 
   react@19.1.1: {}
@@ -2457,6 +2548,8 @@ snapshots:
       tinyglobby: 0.2.14
     optionalDependencies:
       fsevents: 2.3.3
+
+  void-elements@3.1.0: {}
 
   which@2.0.2:
     dependencies:

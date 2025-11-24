@@ -13,6 +13,7 @@
     "lint": "eslint \"src/**/*.ts\""
   },
   "dependencies": {
+    "@example/i18n": "workspace:*",
     "@example/shared": "workspace:*",
     "@example/ui": "workspace:*",
     "@example/utils": "workspace:*",
