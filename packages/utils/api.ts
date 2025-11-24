@@ -41,16 +41,22 @@ export const createApiClient = (baseUrl: string) => {
   };
 
   return {
-    get: <T>(endpoint: string) => request<T>(endpoint),
-    post: <T>(endpoint: string, data: any) =>
+    get: <T>(endpoint: string, data?: any) =>
+      data
+        ? request<T>(endpoint, {
+            method: "GET",
+            body: JSON.stringify(data),
+          })
+        : request<T>(endpoint),
+    post: <T>(endpoint: string, data?: any) =>
       request<T>(endpoint, {
         method: "POST",
-        body: JSON.stringify(data),
+        ...(data && { body: JSON.stringify(data) }),
       }),
-    put: <T>(endpoint: string, data: any) =>
+    put: <T>(endpoint: string, data?: any) =>
       request<T>(endpoint, {
         method: "PUT",
-        body: JSON.stringify(data),
+        ...(data && { body: JSON.stringify(data) }),
       }),
     delete: <T>(endpoint: string) => request<T>(endpoint, { method: "DELETE" }),
   };

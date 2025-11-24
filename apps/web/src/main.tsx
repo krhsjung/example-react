@@ -51,7 +51,7 @@ const App = () => {
 
   const handleLogout = async () => {
     try {
-      await apiClient.get("/logout");
+      await apiClient.post("/logout");
     } catch (error) {}
 
     checkAuth();
