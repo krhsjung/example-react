@@ -7,7 +7,7 @@ import {
   SnsLoginButton,
 } from "@example/ui";
 import { SnsProvider, LoginProvider, SnsSignInFlowType } from "@example/shared";
-import { sha256 } from "@example/utils";
+import { sha512 } from "@example/utils";
 import { useTranslation } from "@example/i18n";
 import "../../styles/login.css";
 import GoogleIcon from "../../icon/google.svg?react";
@@ -223,7 +223,7 @@ const Body: React.FC<BodyProps> = ({
 
       const loginPromise =
         provider == LoginProvider.EMAIL
-          ? Promise.resolve(onLogin?.(email, await sha256(password)))
+          ? Promise.resolve(onLogin?.(email, await sha512(password)))
           : Promise.resolve(onSnsLogin?.(provider));
 
       const promises = [loginPromise];

@@ -5,7 +5,7 @@ import "../../styles/signup-popup.css";
 import GoogleIcon from "../../icon/google.svg?react";
 import AppleIcon from "../../icon/apple.svg?react";
 import { SnsProvider } from "@example/shared";
-import { isEmail, validatePassword, sha256 } from "@example/utils";
+import { isEmail, validatePassword, sha512 } from "@example/utils";
 
 interface FormData {
   email: string;
@@ -276,7 +276,7 @@ export const SignupPopup: React.FC<SignupPopupProps> = ({
     }
 
     try {
-      await onSignUp(email, await sha256(password), name);
+      await onSignUp(email, await sha512(password), name);
       resetForm();
     } catch (error) {
       console.error("Signup failed:", error);
