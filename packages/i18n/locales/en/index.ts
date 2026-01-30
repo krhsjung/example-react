@@ -6,7 +6,8 @@
 
 import common from "./common.json";
 import auth from "./auth.json";
-import errors from "./errors.json";
+import error from "./error.json";
+import serverError from "./server_error.json";
 
 /**
  * English translation resources
@@ -28,5 +29,6 @@ import errors from "./errors.json";
 export default {
   ...common, // Common phrases (buttons, labels, etc.)
   ...auth, // Authentication related (login, signup)
-  ...errors, // Error messages
+  ...error, // Error messages
+  ...serverError, // Server error messages
 };

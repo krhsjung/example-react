@@ -40,9 +40,7 @@ const DescriptionSection = () => {
   const { t } = useTranslation();
   return (
     <div className="login-body-description-section" data-name="Description">
-      <div className="login-body-description-title">
-        {t("login_title")}
-      </div>
+      <div className="login-body-description-title">{t("login_title")}</div>
       <div className="login-body-description-subtitle">
         {t("login_subtitle")}
       </div>
@@ -100,13 +98,13 @@ const LoginSection: React.FC<LoginSectionProps> = ({
     <div className="login-form-section" data-name="Login In Form Section">
       <div className="login-form-input-section">
         <LoginInput
-          placeholder={t("placeholder_email_placeholder")}
+          placeholder={t("placeholder_email")}
           type="email"
           value={email}
           onChange={onEmailChange}
         />
         <LoginInput
-          placeholder={t("placeholder_password_placeholder")}
+          placeholder={t("placeholder_password")}
           type={"password"}
           value={password}
           onChange={onPasswordChange}
@@ -212,7 +210,7 @@ const Body: React.FC<BodyProps> = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loadingProvider, setLoadingProvider] = useState<LoginProvider | null>(
-    null
+    null,
   );
 
   const handleLogin = async (provider: LoginProvider): Promise<void> => {

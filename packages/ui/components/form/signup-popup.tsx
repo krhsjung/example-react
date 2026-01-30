@@ -85,14 +85,14 @@ const SignupSection: React.FC<{
       <div className="signup-popup-field">
         <Input
           type="email"
-          placeholder={t("placeholder_email_placeholder")}
+          placeholder={t("placeholder_email")}
           value={formData.email}
           onChange={(value) => onFormChange("email", value)}
           disabled={isLoading}
         />
         <Input
           type="password"
-          placeholder={t("placeholder_password_placeholder")}
+          placeholder={t("placeholder_password")}
           value={formData.password}
           onChange={(value) => onFormChange("password", value)}
           showPasswordToggle
@@ -100,7 +100,7 @@ const SignupSection: React.FC<{
         />
         <Input
           type="password"
-          placeholder={t("placeholder_confirm_password_placeholder")}
+          placeholder={t("placeholder_confirm_password")}
           value={formData.confirmPassword}
           onChange={(value) => onFormChange("confirmPassword", value)}
           showPasswordToggle
@@ -108,7 +108,7 @@ const SignupSection: React.FC<{
         />
         <Input
           type="text"
-          placeholder={t("placeholder_name_placeholder")}
+          placeholder={t("placeholder_name")}
           value={formData.name}
           onChange={(value) => onFormChange("name", value)}
           disabled={isLoading}
@@ -232,7 +232,7 @@ export const SignupPopup: React.FC<SignupPopupProps> = ({
     agreedToTerms: false,
   });
   const [loadingProvider, setLoadingProvider] = useState<SnsProvider | null>(
-    null
+    null,
   );
 
   const handleFormChange = (field: keyof FormData, value: string | boolean) => {
@@ -252,7 +252,7 @@ export const SignupPopup: React.FC<SignupPopupProps> = ({
   const isFormValid = () => {
     const { email, password, confirmPassword, name, agreedToTerms } = formData;
     return Boolean(
-      email && password && confirmPassword && name && agreedToTerms
+      email && password && confirmPassword && name && agreedToTerms,
     );
   };
 

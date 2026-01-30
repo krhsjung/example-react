@@ -27,7 +27,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
     } catch (error) {
       if (error instanceof ApiError) {
         const serverError = JSON.parse(error.message);
-        alert(t(`errors.server.${serverError.id}`, serverError.params || {}));
+        alert(t(`${serverError.id}` || {}));
       }
       return;
     }
@@ -53,7 +53,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
     const popup = window.open(
       url,
       `Connect ${provider} account`,
-      `width=${width},height=${height} ,left=${window.screenX + (window.outerWidth - parseInt(width)) / 2},top=${window.screenY + (window.outerHeight - parseInt(height)) / 2}`
+      `width=${width},height=${height} ,left=${window.screenX + (window.outerWidth - parseInt(width)) / 2},top=${window.screenY + (window.outerHeight - parseInt(height)) / 2}`,
     );
 
     return new Promise<void>((resolve, reject) => {
@@ -111,10 +111,10 @@ const LoginPage: React.FC<LoginPageProps> = ({
   const handleSignup = async (
     email: string,
     password: string,
-    name: string
+    name: string,
   ): Promise<void> => {
     try {
-      await apiClient.post("/user", {
+      await apiClient.post("/auth/register", {
         email,
         password,
         name,
@@ -127,7 +127,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
         const serverError = JSON.parse(error.message);
         console.log(serverError);
 
-        alert(t(`errors.server.${serverError.id}`, serverError.params || {}));
+        alert(t(`${serverError.id}` || {}));
       }
       return;
     }

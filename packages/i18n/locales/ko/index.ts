@@ -6,7 +6,8 @@
 
 import common from "./common.json";
 import auth from "./auth.json";
-import errors from "./errors.json";
+import error from "./error.json";
+import serverError from "./server_error.json";
 
 /**
  * 한국어 번역 리소스
@@ -28,5 +29,6 @@ import errors from "./errors.json";
 export default {
   ...common, // 공통 문구 (버튼, 라벨 등)
   ...auth, // 인증 관련 (로그인, 회원가입)
-  ...errors, // 에러 메시지
+  ...error, // 에러 메시지
+  ...serverError, // 서버 에러 메시지
 };
