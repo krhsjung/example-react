@@ -9,6 +9,7 @@
     "dev": "vite --mode development --clearScreen false",
     "build": "tsc && vite build",
     "build:dev": "tsc && vite build --mode development",
+    "deploy:dev": "pnpm build:dev && rm -rf /opt/homebrew/var/www/* && cp -r dist/* /opt/homebrew/var/www/",
     "build:prod": "tsc && vite build --mode production",
     "preview": "vite preview",
     "lint": "eslint \"src/**/*.ts\""

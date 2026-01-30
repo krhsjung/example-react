@@ -5,6 +5,8 @@
     "build": "turbo build",
     "local": "turbo local",
     "development": "turbo development",
+    "build:dev": "turbo build:dev",
+    "deploy:dev": "pnpm build:dev && rm -rf /opt/homebrew/var/www/* && cp -r apps/web/dist/* /opt/homebrew/var/www/",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },

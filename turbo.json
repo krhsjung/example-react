@@ -21,6 +21,18 @@
     "development": {
       "cache": false,
       "persistent": true
+    },
+    "build:dev": {
+      "dependsOn": [
+        "^build:dev"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
     }
   }
 }
