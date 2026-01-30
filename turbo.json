@@ -17,6 +17,10 @@
     "local": {
       "cache": false,
       "persistent": true
+    },
+    "development": {
+      "cache": false,
+      "persistent": true
     }
   }
 }

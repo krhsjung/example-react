@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "local": "vite --mode localhost --clearScreen false",
+    "development": "vite --mode development --clearScreen false",
     "dev": "vite --mode development --clearScreen false",
     "build": "tsc && vite build",
     "build:dev": "tsc && vite build --mode development",
