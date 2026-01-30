@@ -1,0 +1,8 @@
+{
+  "extends": "@example/config-typescript/base.json",
+  "compilerOptions": {
+    "types": ["vite/client"]
+  },
+  "include": ["."],
+  "exclude": ["node_modules"]
+}

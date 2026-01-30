@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@example/ui";
 import { SnsProvider } from "@example/shared";
 import "../../styles/common/sns-login-button.css";
