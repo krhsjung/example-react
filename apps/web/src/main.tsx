@@ -15,7 +15,7 @@ const App = () => {
   const { t } = useTranslation();
 
   // 언어 변경 시 컴포넌트가 리렌더링되면서 자동으로 업데이트됨
-  document.title = t("common.application_name");
+  document.title = t("application_name");
 
   const [currentPage, setCurrentPage] = useState<Page>("login");
   const [user, setUser] = useState<any>(null);

@@ -26,7 +26,7 @@ import errors from "./errors.json";
  * };
  */
 export default {
-  common, // 공통 문구 (버튼, 라벨 등)
-  auth, // 인증 관련 (로그인, 회원가입)
-  errors, // 에러 메시지
+  ...common, // 공통 문구 (버튼, 라벨 등)
+  ...auth, // 인증 관련 (로그인, 회원가입)
+  ...errors, // 에러 메시지
 };

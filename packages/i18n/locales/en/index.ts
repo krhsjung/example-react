@@ -26,7 +26,7 @@ import errors from "./errors.json";
  * };
  */
 export default {
-  common, // Common phrases (buttons, labels, etc.)
-  auth, // Authentication related (login, signup)
-  errors, // Error messages
+  ...common, // Common phrases (buttons, labels, etc.)
+  ...auth, // Authentication related (login, signup)
+  ...errors, // Error messages
 };

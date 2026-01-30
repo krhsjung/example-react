@@ -26,19 +26,19 @@ export const validatePassword = (
 } => {
   const errors: string[] = [];
   if (password.length < 8) {
-    errors.push(t("auth.validation.password_min_length"));
+    errors.push(t("validation_password_min_length"));
   }
 
   if (!/[A-Z]/.test(password)) {
-    errors.push(t("auth.validation.password_require_uppercase"));
+    errors.push(t("validation_password_require_uppercase"));
   }
 
   if (!/[a-z]/.test(password)) {
-    errors.push(t("auth.validation.password_require_lowercase"));
+    errors.push(t("validation_password_require_lowercase"));
   }
 
   if (!/\d/.test(password)) {
-    errors.push(t("auth.validation.password_require_number"));
+    errors.push(t("validation_password_require_number"));
   }
 
   return {

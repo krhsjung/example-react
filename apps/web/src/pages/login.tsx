@@ -140,7 +140,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
   return (
     <>
       <LoginForm
-        appName={t("common.application_name")}
+        appName={t("application_name")}
         onLogin={handleLogin}
         onSnsLogin={handleSnsLogin}
         onSignUp={() => setShowSignupPopup(true)}

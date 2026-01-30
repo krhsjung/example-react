@@ -30,7 +30,7 @@ const Header = ({
         className="signup-popup-close-button"
         onClick={onClose}
         disabled={disabled}
-        aria-label={t("common.close_popup")}
+        aria-label={t("close")}
       >
         ×
       </button>
@@ -43,10 +43,10 @@ const BodyHeader = () => {
   return (
     <div className="signup-popup-body-header" data-name="Header">
       <div className="signup-popup-body-header-title">
-        <p>{t("auth.signup.title")}</p>
+        <p>{t("signup_title")}</p>
       </div>
       <div className="signup-popup-body-header-subtitle">
-        <p>{t("auth.signup.subtitle")}</p>
+        <p>{t("signup_subtitle")}</p>
       </div>
     </div>
   );
@@ -85,14 +85,14 @@ const SignupSection: React.FC<{
       <div className="signup-popup-field">
         <Input
           type="email"
-          placeholder={t("auth.placeholder.email_placeholder")}
+          placeholder={t("placeholder_email_placeholder")}
           value={formData.email}
           onChange={(value) => onFormChange("email", value)}
           disabled={isLoading}
         />
         <Input
           type="password"
-          placeholder={t("auth.placeholder.password_placeholder")}
+          placeholder={t("placeholder_password_placeholder")}
           value={formData.password}
           onChange={(value) => onFormChange("password", value)}
           showPasswordToggle
@@ -100,7 +100,7 @@ const SignupSection: React.FC<{
         />
         <Input
           type="password"
-          placeholder={t("auth.placeholder.confirm_password_placeholder")}
+          placeholder={t("placeholder_confirm_password_placeholder")}
           value={formData.confirmPassword}
           onChange={(value) => onFormChange("confirmPassword", value)}
           showPasswordToggle
@@ -108,7 +108,7 @@ const SignupSection: React.FC<{
         />
         <Input
           type="text"
-          placeholder={t("auth.placeholder.name_placeholder")}
+          placeholder={t("placeholder_name_placeholder")}
           value={formData.name}
           onChange={(value) => onFormChange("name", value)}
           disabled={isLoading}
@@ -120,7 +120,7 @@ const SignupSection: React.FC<{
           checked={formData.agreedToTerms}
           onChange={(value) => onFormChange("agreedToTerms", value)}
         >
-          {t("auth.signup.agree_to_terms")}
+          {t("signup_agree_to_terms")}
         </Checkbox>
       </div>
       <Button
@@ -128,7 +128,7 @@ const SignupSection: React.FC<{
         onClick={onSubmit}
         disabled={isLoading || !isFormValid}
       >
-        {t("common.signup")}
+        {t("signup")}
       </Button>
     </div>
   );
@@ -140,7 +140,7 @@ const Divider = () => {
     <div className="signup-popup-divider" data-name="Divider">
       <DividerLine />
       <div className="signup-popup-divider-text">
-        <p>{t("auth.signup.continue_with")}</p>
+        <p>{t("signup_continue_with")}</p>
       </div>
       <DividerLine />
     </div>
@@ -163,7 +163,7 @@ const SnsButtons: React.FC<{
         }
         icon={<GoogleIcon width={16} height={16} />}
       >
-        {t("auth.oauth.google")}
+        {t("oauth_google")}
       </SnsLoginButton>
 
       <SnsLoginButton
@@ -175,7 +175,7 @@ const SnsButtons: React.FC<{
         }
         icon={<AppleIcon width={16} height={16} />}
       >
-        {t("auth.oauth.apple")}
+        {t("oauth_apple")}
       </SnsLoginButton>
     </div>
   );
@@ -260,7 +260,7 @@ export const SignupPopup: React.FC<SignupPopupProps> = ({
     const { email, password, confirmPassword, name } = formData;
 
     if (!isEmail(email)) {
-      alert(t("auth.validation.email_invalid"));
+      alert(t("validation_email_invalid"));
       return;
     }
 
@@ -271,7 +271,7 @@ export const SignupPopup: React.FC<SignupPopupProps> = ({
     }
 
     if (password !== confirmPassword) {
-      alert(t("auth.validation.passwords_not_match"));
+      alert(t("validation_passwords_not_match"));
       return;
     }
 

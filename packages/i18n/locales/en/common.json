@@ -1,12 +1,11 @@
 {
   "application_name": "Example React",
   "login": "Log in",
-  "logout": "Logout",
-  "signup": "Sign Up",
+  "logout": "Log out",
+  "signup": "Sign up",
   "email": "Email",
   "password": "Password",
   "submit": "Submit",
   "cancel": "Cancel",
-  "close": "Close",
-  "close_popup": "Close popup"
+  "close": "Close"
 }

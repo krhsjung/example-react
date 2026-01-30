@@ -41,10 +41,10 @@ const DescriptionSection = () => {
   return (
     <div className="login-body-description-section" data-name="Description">
       <div className="login-body-description-title">
-        {t("auth.login.title")}
+        {t("login_title")}
       </div>
       <div className="login-body-description-subtitle">
-        {t("auth.login.subtitle")}
+        {t("login_subtitle")}
       </div>
     </div>
   );
@@ -100,13 +100,13 @@ const LoginSection: React.FC<LoginSectionProps> = ({
     <div className="login-form-section" data-name="Login In Form Section">
       <div className="login-form-input-section">
         <LoginInput
-          placeholder={t("auth.placeholder.email_placeholder")}
+          placeholder={t("placeholder_email_placeholder")}
           type="email"
           value={email}
           onChange={onEmailChange}
         />
         <LoginInput
-          placeholder={t("auth.placeholder.password_placeholder")}
+          placeholder={t("placeholder_password_placeholder")}
           type={"password"}
           value={password}
           onChange={onPasswordChange}
@@ -121,7 +121,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({
           loading={loadingProvider === LoginProvider.EMAIL}
           // disabled={loadingProvider !== null}
         >
-          {t("common.login")}
+          {t("login")}
         </Button>
         <Button
           type="button"
@@ -130,7 +130,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({
           onClick={onSignUp}
           disabled={loadingProvider !== null}
         >
-          {t("common.signup")}
+          {t("signup")}
         </Button>
       </div>
     </div>
@@ -142,7 +142,7 @@ const Divider = () => {
   return (
     <div className="login-divider-section" data-name="Divider">
       <div className="login-divider-line" />
-      <div className="login-divider-text">{t("auth.login.continue_with")}</div>
+      <div className="login-divider-text">{t("login_continue_with")}</div>
       <div className="login-divider-line" />
     </div>
   );
@@ -169,7 +169,7 @@ const SnsButtonSection: React.FC<SnsButtonSectionProps> = ({
         }
         icon={<GoogleIcon width={16} height={16} />}
       >
-        {t("auth.oauth.google")}
+        {t("oauth_google")}
       </SnsLoginButton>
 
       <SnsLoginButton
@@ -181,7 +181,7 @@ const SnsButtonSection: React.FC<SnsButtonSectionProps> = ({
         }
         icon={<AppleIcon width={16} height={16} />}
       >
-        {t("auth.oauth.apple")}
+        {t("oauth_apple")}
       </SnsLoginButton>
     </div>
   );
@@ -191,7 +191,7 @@ const RememberMeSection = ({}) => {
   const { t } = useTranslation();
   return (
     <div className="login-remember-me-section">
-      <Checkbox children={t("auth.login.remember_me")} />
+      <Checkbox children={t("login_remember_me")} />
     </div>
   );
 };
