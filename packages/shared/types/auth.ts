@@ -3,6 +3,12 @@ export enum SnsProvider {
   APPLE = "apple",
 }
 
+export enum AuthProvider {
+  EMAIL = "email",
+  GOOGLE = "google",
+  APPLE = "apple",
+}
+
 export const LoginProvider = {
   EMAIL: "email",
   ...SnsProvider,

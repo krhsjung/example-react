@@ -1,13 +1,8 @@
-interface User {
-  id?: string;
-  name?: string;
-  email?: string;
-  picture?: string;
-}
+import { UserDto } from "@example/shared";
 
 interface HomeProps {
   onLogout: () => void;
-  user?: User | null;
+  user?: UserDto | null;
 }
 
 const Home: React.FC<HomeProps> = ({ onLogout, user }) => {

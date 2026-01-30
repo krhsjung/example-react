@@ -5,7 +5,7 @@ import "@example/i18n";
 import LoginPage from "./pages/login";
 import Home from "./pages/home";
 import { createApiClient } from "@example/utils/api";
-import { SnsSignInFlowType } from "@example/shared";
+import { SnsSignInFlowType, UserDto } from "@example/shared";
 import { useTranslation } from "@example/i18n";
 import { apiConfig } from "./config";
 
@@ -18,13 +18,13 @@ const App = () => {
   document.title = t("application_name");
 
   const [currentPage, setCurrentPage] = useState<Page>("login");
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<UserDto | null>(null);
   const [checkingAuth, setCheckingAuth] = useState(true);
 
   const apiClient = createApiClient(apiConfig.authAPI);
 
   const fetchUserInfo = async () => {
-    const response = await apiClient.get("/me");
+    const response = await apiClient.get<UserDto>("/me");
     setUser(response);
     return response;
   };
