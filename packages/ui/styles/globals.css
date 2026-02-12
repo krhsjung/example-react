@@ -1,0 +1,257 @@
+/* Global CSS Variables */
+
+body {
+  margin: 0;
+  background-color: var(--page-background);
+  font-family: Inter, sans-serif;
+  font-style: normal;
+}
+
+/* Common Text Styles */
+.text-primary {
+  color: var(--text-color-primary, #0a0a0a);
+}
+
+.text-secondary {
+  color: var(--text-color-secondary, #4a5565);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.15px;
+}
+
+.text-link {
+  color: var(--link-text-color);
+  cursor: pointer;
+}
+
+.text-error {
+  color: var(--error-color, #fb2c36);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.15px;
+}
+
+:root {
+  /* Page */
+  --page-background: #fff;
+  --divider-line-color: #d1d5dc;
+  --error-color: #fb2c36;
+
+  /* Text */
+  --text-color-primary: #0a0a0a;
+  --text-color-secondary: #4a5565;
+  --link-text-color: #155dfc;
+
+  /* Button */
+  --button-height: 36px;
+  --button-background: #030213;
+  --button-text-color: #ffffff;
+  --button-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --button-active-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  /* Social Button */
+  --social-button-background: #ffffff;
+  --social-button-stroke: rgba(0, 0, 0, 0.1);
+  --social-icon-color: #0a0a0a;
+
+  /* Input */
+  --input-background: #f3f3f5;
+  --input-stroke-color: rgba(0, 0, 0, 0);
+  --input-box-shadow-color: rgba(161, 161, 161, 0.5);
+  --input-text-color: var(--text-color-primary, #0a0a0a);
+  --input-placeholder-color: #717182;
+  --input-disabled-color: rgba(46, 24, 20, 0.2);
+  --input-disabled-background: #f8f8f9;
+  --input-error-stroke-color: var(--error-color, #fb2c36);
+  --input-error-box-shadow-color: rgba(251, 44, 54, 0.92);
+  --input-icon-color: #99a1af;
+
+  /* Checkbox */
+  --checkbox-background: #f3f3f5;
+  --checkbox-border-color: rgba(0, 0, 0, 0.1);
+  --checkbox-box-shadow-color: rgba(0, 0, 0, 0.05);
+  --checkbox-checked-background: #030213;
+  --checkbox-checked-border-color: #030213;
+  --checkbox-checked-icon-color: #ffffff;
+  --checkbox-disabled-icon-color: rgba(46, 24, 20, 0.3);
+  --checkbox-disabled-label-color: rgba(46, 24, 20, 0.4);
+
+  /* Interactive Elements */
+  --hover-background: rgba(0, 0, 0, 0.08);
+  --focus-outline: rgba(0, 0, 0, 0.3);
+
+  /* Modal */
+  --modal-overlay-background: rgba(0, 0, 0, 0.5);
+  --modal-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+
+  /* Toast */
+  --toast-error-background: #fef2f2;
+  --toast-error-text: #991b1b;
+  --toast-error-border: #fecaca;
+  --toast-success-background: #f0fdf4;
+  --toast-success-text: #166534;
+  --toast-success-border: #bbf7d0;
+  --toast-info-background: #eff6ff;
+  --toast-info-text: #1e40af;
+  --toast-info-border: #bfdbfe;
+  --toast-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Manual theme toggle */
+[data-theme="dark"] {
+  /* Page */
+  --page-background: #0f1729;
+  --divider-line-color: #364153;
+
+  /* Text */
+  --text-color-primary: #ffffff;
+  --text-color-secondary: #99a1af;
+
+  /* Button */
+  --button-background: #fafafa;
+  --button-text-color: #171717;
+  --button-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --button-active-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+  /* Social Button */
+  --social-button-background: #364153;
+  --social-button-stroke: #262626;
+  --social-icon-color: #fafafa;
+
+  /* Input */
+  --input-background: #364153;
+  --input-stroke-color: #262626;
+  --input-text-color: var(--text-color-primary, #0a0a0a);
+  --input-placeholder-color: #a1a1a1;
+  --input-disabled-color: rgba(255, 255, 255, 0.2);
+  --input-disabled-background: #2d3748;
+  --input-error-stroke-color: var(--error-color, #fb2c36);
+  --input-error-box-shadow-color: rgba(251, 44, 54, 0.92);
+  --input-icon-color: #6b7280;
+
+  /* Checkbox */
+  --checkbox-background: #364153;
+  --checkbox-border-color: #4a5565;
+  --checkbox-box-shadow-color: rgba(0, 0, 0, 0.05);
+  --checkbox-checked-background: #fafafa;
+  --checkbox-checked-border-color: #fafafa;
+  --checkbox-checked-icon-color: #171717;
+  --checkbox-disabled-icon-color: rgba(255, 255, 255, 0.3);
+  --checkbox-disabled-label-color: rgba(255, 255, 255, 0.4);
+
+  /* Interactive Elements */
+  --hover-background: rgba(255, 255, 255, 0.1);
+  --focus-outline: rgba(255, 255, 255, 0.4);
+
+  /* Modal */
+  --modal-overlay-background: rgba(0, 0, 0, 0.6);
+  --modal-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+
+  /* Toast */
+  --toast-error-background: #450a0a;
+  --toast-error-text: #fecaca;
+  --toast-error-border: #7f1d1d;
+  --toast-success-background: #052e16;
+  --toast-success-text: #bbf7d0;
+  --toast-success-border: #166534;
+  --toast-info-background: #1e3a5f;
+  --toast-info-text: #bfdbfe;
+  --toast-info-border: #1e40af;
+  --toast-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* System preference fallback (when no manual theme is set) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    /* Page */
+    --page-background: #0f1729;
+    --divider-line-color: #364153;
+
+    /* Text */
+    --text-color-primary: #ffffff;
+    --text-color-secondary: #99a1af;
+
+    /* Button */
+    --button-background: #fafafa;
+    --button-text-color: #171717;
+    --button-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --button-active-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+    /* Social Button */
+    --social-button-background: #364153;
+    --social-button-stroke: #262626;
+    --social-icon-color: #fafafa;
+
+    /* Input */
+    --input-background: #364153;
+    --input-stroke-color: #262626;
+    --input-text-color: var(--text-color-primary, #0a0a0a);
+    --input-placeholder-color: #a1a1a1;
+    --input-disabled-color: rgba(255, 255, 255, 0.2);
+    --input-disabled-background: #2d3748;
+    --input-error-stroke-color: var(--error-color, #fb2c36);
+    --input-error-box-shadow-color: rgba(251, 44, 54, 0.92);
+    --input-icon-color: #6b7280;
+
+    /* Checkbox */
+    --checkbox-background: #364153;
+    --checkbox-border-color: #4a5565;
+    --checkbox-box-shadow-color: rgba(0, 0, 0, 0.05);
+    --checkbox-checked-background: #fafafa;
+    --checkbox-checked-border-color: #fafafa;
+    --checkbox-checked-icon-color: #171717;
+    --checkbox-disabled-icon-color: rgba(255, 255, 255, 0.3);
+    --checkbox-disabled-label-color: rgba(255, 255, 255, 0.4);
+
+    /* Interactive Elements */
+    --hover-background: rgba(255, 255, 255, 0.1);
+    --focus-outline: rgba(255, 255, 255, 0.4);
+
+    /* Modal */
+    --modal-overlay-background: rgba(0, 0, 0, 0.6);
+    --modal-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+
+    /* Toast */
+    --toast-error-background: #450a0a;
+    --toast-error-text: #fecaca;
+    --toast-error-border: #7f1d1d;
+    --toast-success-background: #052e16;
+    --toast-success-text: #bbf7d0;
+    --toast-success-border: #166534;
+    --toast-info-background: #1e3a5f;
+    --toast-info-text: #bfdbfe;
+    --toast-info-border: #1e40af;
+    --toast-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Social Icon Styles */
+.social-icon {
+  color: var(--social-icon-color);
+}
+
+/* Loading Screen */
+.loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--page-background);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--divider-line-color);
+  border-top-color: var(--text-color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

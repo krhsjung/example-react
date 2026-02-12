@@ -30,6 +30,5 @@
   "error_password_no_lowercase": "비밀번호는 소문자를 포함해야 합니다",
   "error_password_no_number": "비밀번호는 숫자를 포함해야 합니다",
   "error_empty_confirm_password": "비밀번호를 한번 더 입력해 주세요",
-  "error_password_not_match": "비밀번호가 일치하지 않습니다",
   "error_password_no_special_character": "비밀번호는 특수문자를 포함해야 합니다"
 }

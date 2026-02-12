@@ -18,10 +18,11 @@ export const createEnvConfig = () => {
     isProduction: import.meta.env.PROD,
   } as const;
 
+  const apiBaseURL = `${env.API_ORIGIN}/example/nestjs/${env.ENV}/api`;
   const apiConfig = {
-    baseURL: `${env.API_ORIGIN}/example/nestjs/${env.ENV}/api`,
-    userAPI: `${env.API_ORIGIN}/example/nestjs/${env.ENV}/api/user`,
-    authAPI: `${env.API_ORIGIN}/example/nestjs/${env.ENV}/api/auth`,
+    baseURL: apiBaseURL,
+    userAPI: `${apiBaseURL}/user`,
+    authAPI: `${apiBaseURL}/auth`,
   } as const;
 
   const appConfig = {

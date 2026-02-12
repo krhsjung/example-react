@@ -30,6 +30,5 @@
   "error_password_no_uppercase": "Password must contain an uppercase letter",
   "error_password_no_lowercase": "Password must contain a lowercase letter",
   "error_password_no_number": "Password must contain a number",
-  "error_password_not_match": "Passwords do not match",
   "error_password_no_special_character": "Password must contain a special character"
 }

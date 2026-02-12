@@ -9,14 +9,17 @@
   "edit": "편집",
   "email": "이메일",
   "error": "오류",
+  "hide_password": "비밀번호 숨기기",
   "loading": "로딩 중...",
   "login": "로그인",
   "logout": "로그아웃",
+  "name": "이름",
   "next": "다음",
   "ok": "확인",
   "password": "비밀번호",
   "retry": "재시도",
   "save": "저장",
+  "show_password": "비밀번호 표시",
   "signup": "회원가입",
   "submit": "제출"
 }

@@ -1,4 +1,12 @@
-import { useTranslation as useI18nTranslation } from 'react-i18next';
+import { useTranslation as useI18nTranslation } from "react-i18next";
+import type { TFunction, i18n } from "i18next";
+
+export interface UseTranslationReturn {
+  t: TFunction;
+  i18n: i18n;
+  changeLanguage: (lng: string) => void;
+  currentLanguage: string;
+}
 
 /**
  * 다국어 번역 및 언어 변경을 위한 커스텀 Hook
@@ -24,7 +32,7 @@ import { useTranslation as useI18nTranslation } from 'react-i18next';
  * // 현재 언어 표시
  * <p>Current: {currentLanguage}</p>
  */
-export const useTranslation = () => {
+export const useTranslation = (): UseTranslationReturn => {
   // react-i18next의 기본 훅 사용
   const { t, i18n } = useI18nTranslation();
 
@@ -39,13 +47,18 @@ export const useTranslation = () => {
 
     // 사용자가 선택한 언어를 localStorage에 저장
     // 다음 방문 시 i18n.ts의 getBrowserLanguage()에서 이 값을 우선적으로 사용
-    localStorage.setItem('i18n-language', lng);
+    /* localStorage 접근 시 오류 처리 (Private browsing 모드 등) */
+    try {
+      localStorage.setItem("i18n-language", lng);
+    } catch {
+      /* localStorage 접근 불가 시 무시 (언어는 세션 동안만 유지) */
+    }
   };
 
   return {
-    t,                              // 번역 함수: t('키') -> 번역된 문자열
-    i18n,                           // i18n 인스턴스 (필요시 직접 제어)
-    changeLanguage,                 // 언어 변경 함수
+    t, // 번역 함수: t('키') -> 번역된 문자열
+    i18n, // i18n 인스턴스 (필요시 직접 제어)
+    changeLanguage, // 언어 변경 함수
     currentLanguage: i18n.language, // 현재 언어 코드
   };
 };

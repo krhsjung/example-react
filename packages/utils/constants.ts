@@ -52,10 +52,10 @@ export const THEMES = {
 
 // 정규표현식 패턴
 export const REGEX_PATTERNS = {
-  EMAIL: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  /* RFC 5322 준수 이메일 정규표현식 */
+  EMAIL:
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
   PHONE_KR: /^01[0-9]-\d{4}-\d{4}$/,
-  PASSWORD_STRONG:
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
   URL: /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/,
 } as const;
 
@@ -73,6 +73,11 @@ export const DATE_FORMATS = {
   LONG: "YYYY년 MM월 DD일",
   WITH_TIME: "YYYY-MM-DD HH:mm:ss",
   TIME_ONLY: "HH:mm",
+} as const;
+
+// OAuth 관련 상수
+export const OAUTH = {
+  POLLING_INTERVAL_MS: 1_000,
 } as const;
 
 // 에러 메시지

@@ -1,8 +1,7 @@
 {
   "extends": "@example/config-typescript/base.json",
   "compilerOptions": {
-    "module": "ESNext",
-    "types": ["vite/client"]
+    "module": "ESNext"
   },
   "include": ["."],
   "exclude": ["node_modules"]

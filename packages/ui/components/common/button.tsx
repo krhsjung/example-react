@@ -2,10 +2,8 @@ import React from "react";
 import "../../styles/common/button.css";
 
 interface ButtonProps {
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "destructive";
-  size?: "small" | "medium" | "large";
-  children: React.ReactNode;
-  onClick?: () => void;
+  children?: React.ReactNode;
+  onClick?: () => void | Promise<void>;
   disabled?: boolean;
   fullWidth?: boolean;
   className?: string;
@@ -13,13 +11,11 @@ interface ButtonProps {
   icon?: React.ReactNode;
   iconPosition?: "left" | "right";
   loading?: boolean;
-  background?: string;
-  color?: string;
+  /** 아이콘 전용 버튼에 필수 - 스크린 리더용 접근성 레이블 */
+  "aria-label"?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
-  variant = "primary",
-  size = "medium",
   children,
   onClick,
   disabled = false,
@@ -29,41 +25,33 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   iconPosition = "left",
   loading = false,
-  background,
-  color,
+  "aria-label": ariaLabel,
 }: ButtonProps) => {
+  const isIconOnly = icon && !children;
+
   const buttonClasses = [
     "button",
-    background ? "button-custom" : `button-${variant}`,
-    `button-${size}`,
     fullWidth ? "button-full-width" : "",
     loading ? "button-loading" : "",
-    disabled ? "disabled" : "",
+    isIconOnly ? "button-icon-only" : "",
     className,
   ]
     .filter(Boolean)
     .join(" ");
 
-  const customStyle = background
-    ? ({
-        "--button-bg": background,
-        "--button-color": color || "black",
-      } as React.CSSProperties)
-    : undefined;
-
   const renderContent = () => {
     if (loading) {
-      return (
-        <>
-          <div className="button-spinner" />
-          <span className="button-text">Loading...</span>
-        </>
-      );
+      return <div className="button-spinner" />;
     }
 
     const iconElement = icon && (
       <span className={`button-icon button-icon-${iconPosition}`}>{icon}</span>
     );
+
+    // Icon only 모드
+    if (isIconOnly) {
+      return iconElement;
+    }
 
     return (
       <>
@@ -80,10 +68,9 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled || loading}
       type={type}
-      style={customStyle}
+      aria-label={ariaLabel}
     >
-      <div className="button-border" aria-hidden="true" />
-      <div className="button-content">{renderContent()}</div>
+      <span className="button-content">{renderContent()}</span>
     </button>
   );
 };
