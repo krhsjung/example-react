@@ -284,26 +284,26 @@ export const SignupModal: React.FC<SignupModalProps> = ({
 
   /* 모달 열릴 때 포커스 관리 및 이벤트 리스너 등록 */
   useEffect(() => {
-    if (isOpen) {
-      previousActiveElement.current = document.activeElement as HTMLElement;
-      document.addEventListener("keydown", handleKeyDown);
+    if (!isOpen) return;
 
-      /* 모달 내 첫 번째 포커스 가능한 요소로 포커스 이동 */
-      const timer = setTimeout(() => {
-        const firstInput =
-          modalRef.current?.querySelector<HTMLElement>("input");
-        firstInput?.focus();
-      }, 0);
+    previousActiveElement.current = document.activeElement as HTMLElement;
+    document.addEventListener("keydown", handleKeyDown);
 
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-        clearTimeout(timer);
-        /* 이전 요소가 DOM에 존재하는 경우에만 포커스 복원 */
-        if (previousActiveElement.current?.isConnected) {
-          previousActiveElement.current.focus();
-        }
-      };
-    }
+    /* 모달 내 첫 번째 포커스 가능한 요소로 포커스 이동 */
+    const timer = setTimeout(() => {
+      const firstInput =
+        modalRef.current?.querySelector<HTMLElement>("input");
+      firstInput?.focus();
+    }, 0);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      clearTimeout(timer);
+      /* 이전 요소가 DOM에 존재하는 경우에만 포커스 복원 */
+      if (previousActiveElement.current?.isConnected) {
+        previousActiveElement.current.focus();
+      }
+    };
   }, [isOpen, handleKeyDown]);
 
   const handleOverlayClick = useCallback(() => {
