@@ -1,14 +1,28 @@
 import React from "react";
-import "../../styles/common/check-box.css";
-import CheckBoxIcon from "../../icon/check-box.svg?react";
-import CheckBoxBlankIcon from "../../icon/check-box-blank.svg?react";
+import "../../styles/common/checkbox.css";
+
+const CheckIcon = () => (
+  <svg
+    className="checkbox-check-icon"
+    viewBox="0 0 14 14"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M11.6666 3.5L5.24998 9.91667L2.33331 7"
+      stroke="currentColor"
+      strokeWidth="1.16667"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 export interface CheckboxProps {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
   disabled?: boolean;
   className?: string;
-  size?: "small" | "medium" | "large";
   children?: React.ReactNode;
   id?: string;
 }
@@ -18,7 +32,6 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   onChange,
   disabled = false,
   className = "",
-  size = "medium",
   children,
   id,
 }) => {
@@ -37,7 +50,6 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
   const containerClasses = [
     "checkbox-container",
-    size !== "medium" ? size : "",
     disabled ? "disabled" : "",
     checked ? "checked" : "",
     className,
@@ -45,31 +57,28 @@ export const Checkbox: React.FC<CheckboxProps> = ({
     .filter(Boolean)
     .join(" ");
 
+  const labelId = id ? `${id}-label` : undefined;
+
   return (
     <div className={containerClasses}>
       <div
-        className="checkbox-wrapper"
+        className="checkbox-icon"
         onClick={handleChange}
         onKeyDown={handleKeyDown}
         tabIndex={disabled ? -1 : 0}
         role="checkbox"
         aria-checked={checked}
         aria-disabled={disabled}
-        aria-describedby={id}
+        aria-labelledby={labelId}
+        id={id}
       >
-        <div className="checkbox-icon">
-          {checked ? (
-            <CheckBoxIcon width={20} height={20} />
-          ) : (
-            <CheckBoxBlankIcon width={20} height={20} />
-          )}
-        </div>
-        {children && (
-          <label className="checkbox-label" htmlFor={id}>
-            {children}
-          </label>
-        )}
+        {checked && <CheckIcon />}
       </div>
+      {children && (
+        <span id={labelId} className="checkbox-label">
+          {children}
+        </span>
+      )}
     </div>
   );
 };

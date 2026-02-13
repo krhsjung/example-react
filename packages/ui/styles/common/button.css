@@ -1,313 +1,182 @@
-/* Button Component Styles */
+/* ===========================================
+   Button Component Styles
+   =========================================== */
 
+/* -------------------------------------------
+   Base Button
+   버튼 컴포넌트의 기본 스타일
+   ------------------------------------------- */
 .button {
-  position: relative;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  font-family:
+  position: relative; /* 자식 요소의 절대 위치 기준점 */
+  border: none; /* 기본 테두리 - 외부 클래스에서 override 가능 */
+  background: transparent; /* 기본 배경 - 외부 클래스에서 설정 */
+  color: inherit; /* 기본 텍스트 색상 - 외부 클래스에서 설정 */
+  cursor: pointer; /* 클릭 가능한 커서 */
+  transition: all 0.2s ease-in-out; /* 상태 변화 시 부드러운 전환 효과 */
+  display: inline-flex; /* 인라인 플렉스박스 레이아웃 */
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  font-family: /* 폰트 패밀리 (시스템 폰트 폴백 포함) */
     "Inter",
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
     Roboto,
     sans-serif;
-  font-weight: 500;
-  text-decoration: none;
-  outline: none;
+  font-weight: 500; /* 중간 굵기 */
+  text-decoration: none; /* 텍스트 장식 제거 */
+  outline: none; /* 기본 아웃라인 제거 */
+  /* 터치 디바이스 최적화 */
+  -webkit-tap-highlight-color: transparent; /* iOS/Safari 터치 하이라이트 제거 */
+  touch-action: manipulation; /* 더블탭 줌 비활성화, 터치 반응성 개선 */
+  user-select: none; /* 텍스트 선택 방지 */
 }
 
+/* -------------------------------------------
+   Button States
+   버튼 상태별 스타일 (hover, active, disabled, focus)
+   ------------------------------------------- */
+
+/* 마우스 호버 시 */
+.button:hover:not(:disabled) {
+  transform: translateY(-1px); /* 위로 1px 이동 (튀어오르는 효과) */
+  box-shadow: var(--button-hover-shadow); /* 그림자 효과 */
+}
+
+/* 클릭/터치 시 */
+.button:active:not(:disabled) {
+  transform: translateY(0); /* 원래 위치로 복귀 */
+  box-shadow: var(--button-active-shadow); /* 그림자 축소 */
+}
+
+/* 비활성화 상태 */
 .button:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
+  cursor: not-allowed; /* 비활성화 커서 */
+  opacity: 0.5; /* 50% 투명도 */
 }
 
+/* 키보드 포커스 상태 (Tab 키로 이동 시) */
 .button:focus-visible {
-  outline: 2px solid var(--color-ring);
-  outline-offset: 2px;
+  outline: 2px solid var(--input-stroke-color, #262626); /* 포커스 아웃라인 */
+  outline-offset: 2px; /* 아웃라인과 버튼 사이 간격 */
 }
 
-.button-border {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  border: 1px solid transparent;
-}
+/* -------------------------------------------
+   Button Internal Elements
+   버튼 내부 요소 스타일
+   ------------------------------------------- */
 
+/* 버튼 콘텐츠 래퍼 */
 .button-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding: inherit;
+  display: flex; /* 플렉스박스 레이아웃 */
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  gap: 8px; /* 자식 요소 간 간격 */
+  position: relative; /* 상대 위치 */
+  width: 100%; /* 부모 너비에 맞춤 */
+  height: 100%; /* 부모 높이에 맞춤 */
+  padding: inherit; /* 부모의 패딩 상속 */
 }
 
+/* 버튼 텍스트 */
 .button-text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  overflow: hidden; /* 넘치는 텍스트 숨김 */
+  text-overflow: ellipsis; /* 넘치는 텍스트 말줄임(...) */
 }
 
+/* 버튼 아이콘 */
 .button-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  display: flex; /* 플렉스박스로 아이콘 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  flex-shrink: 0; /* 축소 방지 (항상 원래 크기 유지) */
 }
 
+/* 아이콘 내부 SVG가 전달된 크기를 사용하도록 */
+.button-icon svg {
+  width: inherit;
+  height: inherit;
+}
+
+/* -------------------------------------------
+   Loading State
+   로딩 상태 스타일
+   ------------------------------------------- */
+
+/* 로딩 스피너 */
 .button-spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid currentColor;
-  border-top: 2px solid transparent;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+  width: 16px; /* 스피너 너비 */
+  height: 16px; /* 스피너 높이 */
+  border: 2px solid currentColor; /* 현재 텍스트 색상으로 테두리 */
+  border-top: 2px solid transparent; /* 상단 테두리 투명 (회전 효과) */
+  border-radius: 50%; /* 원형 모양 */
+  animation: spin 1s linear infinite; /* spin 애니메이션 적용: 1초 동안, 일정 속도로, 무한 반복 */
 }
 
+/*
+  @keyframes: CSS 애니메이션의 각 프레임(단계)을 정의
+  - from (0%): 애니메이션 시작 상태
+  - to (100%): 애니메이션 끝 상태
+  - 중간 단계도 정의 가능 (예: 50% { ... })
+*/
 @keyframes spin {
+  /* 시작(0%)은 기본 상태(rotate(0deg))이므로 생략 */
   to {
-    transform: rotate(360deg);
+    transform: rotate(360deg); /* 끝 상태: 360도 회전 */
   }
 }
 
-/* Size variants */
-.button-small {
-  height: 32px;
-  padding: 0 12px;
-  font-size: 14px;
-  border-radius: 8px;
-}
-
-.button-small .button-border {
-  border-radius: 8px;
-}
-
-.button-small .button-icon {
-  width: 16px;
-  height: 16px;
-}
-
-.button-small .button-content {
-  gap: 6px;
-}
-
-.button-medium {
-  height: 36px;
-  padding: 0 14px;
-  font-size: 15px;
-}
-
-.button-medium .button-icon {
-  width: 18px;
-  height: 18px;
-}
-
-.button-large {
-  height: 44px;
-  padding: 0 20px;
-  font-size: 16px;
-  border-radius: 16px;
-}
-
-.button-large .button-border {
-  border-radius: 16px;
-}
-
-.button-large .button-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.button-large .button-content {
-  gap: 10px;
-}
-
-/* Full width */
-.button-full-width {
-  width: 100%;
-}
-
-/* Variant styles */
-.button-custom {
-  background: var(--button-bg);
-  color: var(--button-color);
-}
-
-.button-custom:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--button-bg) 90%, black);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--button-bg) 30%, transparent);
-}
-
-.button-custom:active:not(:disabled) {
-  background: color-mix(in srgb, var(--button-bg) 85%, black);
-  transform: translateY(0);
-  box-shadow: 0 2px 6px color-mix(in srgb, var(--button-bg) 20%, transparent);
-}
-
-.button-primary {
-  background: var(--color-primary);
-  color: var(--color-primary-foreground);
-}
-
-.button-primary:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--color-primary) 90%, black);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px
-    color-mix(in srgb, var(--color-primary) 30%, transparent);
-}
-
-.button-primary:active:not(:disabled) {
-  background: color-mix(in srgb, var(--color-primary) 85%, black);
-  transform: translateY(0);
-  box-shadow: 0 2px 6px
-    color-mix(in srgb, var(--color-primary) 20%, transparent);
-}
-
-.button-secondary {
-  background: var(--color-secondary);
-  color: var(--color-secondary-foreground);
-}
-
-.button-secondary:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--color-secondary) 85%, black);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px
-    color-mix(in srgb, var(--color-secondary) 30%, transparent);
-}
-
-.button-secondary:active:not(:disabled) {
-  background: color-mix(in srgb, var(--color-secondary) 75%, black);
-  transform: translateY(0);
-  box-shadow: 0 2px 6px
-    color-mix(in srgb, var(--color-secondary) 20%, transparent);
-}
-
-.button-outline {
-  background: transparent;
-  color: var(--color-primary);
-}
-
-.button-outline .button-border {
-  border-color: var(--color-border);
-}
-
-.button-outline:hover:not(:disabled) {
-  background: var(--color-accent);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px
-    color-mix(in srgb, var(--color-primary) 15%, transparent);
-}
-
-.button-outline:hover:not(:disabled) .button-border {
-  border-color: var(--color-primary);
-}
-
-.button-outline:active:not(:disabled) {
-  background: color-mix(in srgb, var(--color-accent) 80%, var(--color-primary));
-  transform: translateY(0);
-  box-shadow: 0 2px 6px
-    color-mix(in srgb, var(--color-primary) 10%, transparent);
-}
-
-.button-ghost {
-  background: transparent;
-  color: var(--color-foreground);
-}
-
-.button-ghost:hover:not(:disabled) {
-  background: var(--color-accent);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px
-    color-mix(in srgb, var(--color-foreground) 8%, transparent);
-}
-
-.button-ghost:active:not(:disabled) {
-  background: color-mix(
-    in srgb,
-    var(--color-accent) 80%,
-    var(--color-foreground)
-  );
-  transform: translateY(0);
-  box-shadow: 0 1px 4px
-    color-mix(in srgb, var(--color-foreground) 5%, transparent);
-}
-
-.button-destructive {
-  background: var(--color-destructive);
-  color: var(--color-destructive-foreground);
-}
-
-.button-destructive:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--color-destructive) 90%, black);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px
-    color-mix(in srgb, var(--color-destructive) 30%, transparent);
-}
-
-.button-destructive:active:not(:disabled) {
-  background: color-mix(in srgb, var(--color-destructive) 85%, black);
-  transform: translateY(0);
-  box-shadow: 0 2px 6px
-    color-mix(in srgb, var(--color-destructive) 20%, transparent);
-}
-
-/* Loading state */
+/* 로딩 중 버튼 */
 .button-loading {
-  pointer-events: none;
+  pointer-events: none; /* 클릭 이벤트 비활성화 */
 }
 
+/* 로딩 중 콘텐츠 */
 .button-loading .button-content {
-  opacity: 0.8;
+  opacity: 0.8; /* 80% 투명도로 로딩 중임을 시각적으로 표현 */
 }
 
-/* Icon only button */
-.button.icon-only {
-  aspect-ratio: 1;
-  padding: 0;
+/* -------------------------------------------
+   Layout Variants
+   레이아웃 변형 스타일
+   ------------------------------------------- */
+
+/* 전체 너비 버튼 */
+.button-full-width {
+  width: 100%; /* 부모 요소의 전체 너비 차지 */
 }
 
-.button.icon-only .button-text {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+/* 아이콘 전용 버튼 */
+.button-icon-only {
+  padding: 8px; /* 정사각형에 가깝게 */
+  aspect-ratio: 1; /* 정사각형 비율 유지 */
 }
 
-/* Dark mode adjustments */
-@media (prefers-color-scheme: dark) {
-  .button-outline {
-    color: var(--color-primary-foreground);
-  }
-
-  .button-outline:hover:not(:disabled) {
-    color: var(--color-primary);
-  }
+/* 아이콘 전용 버튼의 아이콘 중앙 배치 */
+.button-icon-only .button-icon {
+  margin: auto; /* 아이콘을 중앙에 배치 */
 }
 
-/* Focus improvements */
-.button:focus-visible {
-  outline: 2px solid var(--color-ring);
-  outline-offset: 2px;
+/* -------------------------------------------
+   Button Variants
+   버튼 색상/스타일 변형
+   ------------------------------------------- */
+
+/* Primary 버튼 - 주요 액션용 */
+.button.button-primary {
+  height: var(--button-height, 36px);
+  display: flex;
+  align-self: stretch;
+  border-radius: 8px;
+  background: var(--button-background, #030213);
+  color: var(--button-text-color, #ffffff);
 }
 
-.button-primary:focus-visible {
-  outline-color: var(--color-primary);
-}
-
-.button-destructive:focus-visible {
-  outline-color: var(--color-destructive);
+/* Social 버튼 - 소셜 로그인용 */
+.button.button-social {
+  height: var(--button-height, 36px);
+  border-radius: 8px;
+  border: 1.306px solid var(--social-button-stroke, rgba(0, 0, 0, 0.1));
+  background: var(--social-button-background, #fff);
 }

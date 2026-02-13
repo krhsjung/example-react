@@ -1,0 +1,254 @@
+/* ============================================
+   LoginForm Component Styles
+   로그인 폼 컴포넌트 스타일
+   ============================================ */
+
+/*
+ * 반응형 디자인 순서 중요:
+ * 1. 모바일 퍼스트 (기본 스타일)
+ * 2. 태블릿/데스크탑 (@media 쿼리로 오버라이드)
+ */
+
+/* -------------------------------------------
+   Base Layout (기본 레이아웃 - 모바일)
+   ------------------------------------------- */
+
+/*
+ * .login-form
+ * 로그인 폼의 최상위 컨테이너
+ * 전체 화면을 차지하며 콘텐츠를 중앙에 배치
+ */
+.login-form {
+  width: 100%; /* 부모 요소의 전체 너비 차지 */
+  height: 100vh; /* 뷰포트 전체 높이 (viewport height) */
+  display: flex; /* 플렉스박스 레이아웃 */
+  justify-content: center; /* 콘텐츠를 수평 중앙 정렬 */
+  align-items: center; /* 콘텐츠를 수직 중앙 정렬 */
+}
+
+/* -------------------------------------------
+   Positioning Utilities (위치 유틸리티)
+   ------------------------------------------- */
+
+/*
+ * .mode-button-top-right
+ * 테마 전환 버튼을 화면 우측 상단에 고정
+ */
+.mode-button-top-right {
+  position: fixed; /* 스크롤해도 위치 고정 */
+  top: 20px; /* 상단에서 20px */
+  right: 20px; /* 우측에서 20px */
+  z-index: 100; /* 다른 요소들 위에 표시 */
+}
+
+/* -------------------------------------------
+   Login Content (로그인 콘텐츠)
+   ------------------------------------------- */
+
+/*
+ * .login-form-content
+ * 로그인 폼의 실제 콘텐츠 영역
+ */
+.login-form-content {
+  display: flex; /* 플렉스박스 레이아웃 */
+  min-width: 360px; /* 최소 너비 (모바일 대응) */
+  max-width: 450px; /* 최대 너비 (데스크탑에서 너무 넓어지지 않도록) */
+  padding: 25px; /* 내부 여백 */
+  box-sizing: border-box; /* 패딩을 너비에 포함 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  gap: 20px; /* 자식 요소 간 간격 */
+}
+
+/* -------------------------------------------
+   Title Section (타이틀 섹션)
+   ------------------------------------------- */
+
+/*
+ * .login-title-section
+ * 로그인 타이틀과 서브타이틀을 감싸는 컨테이너
+ */
+.login-title-section {
+  display: flex; /* 플렉스박스 레이아웃 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  justify-content: center; /* 수직 중앙 정렬 */
+  align-items: center; /* 수평 중앙 정렬 */
+  gap: 8px; /* 타이틀과 서브타이틀 사이 간격 */
+  align-self: stretch; /* 부모 너비에 맞춤 */
+}
+
+/*
+ * .login-title
+ * 메인 타이틀 (예: "Welcome Back")
+ */
+.login-title {
+  color: var(--text-color-primary, #0a0a0a); /* 기본 텍스트 색상 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  font-size: 30px; /* 글자 크기 */
+  font-weight: 700; /* 굵은 글씨 (bold) */
+  line-height: 36px; /* 줄 높이 (120%) */
+  letter-spacing: 0.396px; /* 자간 */
+}
+
+/*
+ * .login-subtitle
+ * 서브타이틀 (예: "Sign in to your account")
+ */
+.login-subtitle {
+  color: var(--text-color-secondary, #4a5565); /* 보조 텍스트 색상 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  font-size: 16px; /* 글자 크기 */
+  font-weight: 400; /* 일반 굵기 */
+  line-height: 24px; /* 줄 높이 (150%) */
+  letter-spacing: -0.312px; /* 자간 */
+}
+
+/* -------------------------------------------
+   Credentials Section (로그인 정보 입력 섹션)
+   ------------------------------------------- */
+
+/*
+ * .login-credentials-section
+ * 이메일/비밀번호 입력 필드들을 감싸는 섹션
+ */
+.login-credentials-section {
+  display: flex; /* 플렉스박스 레이아웃 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  align-items: flex-start; /* 좌측 정렬 */
+  gap: 16px; /* 입력 필드 간 간격 */
+  align-self: stretch; /* 부모 너비에 맞춤 */
+}
+
+/*
+ * .login-credentials-container
+ * 개별 입력 필드와 라벨을 감싸는 컨테이너
+ */
+.login-credentials-container {
+  display: flex; /* 플렉스박스 레이아웃 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  align-items: flex-start; /* 좌측 정렬 */
+  gap: 8px; /* 라벨과 입력 필드 사이 간격 */
+  flex-shrink: 0; /* 축소 방지 */
+  align-self: stretch; /* 부모 너비에 맞춤 */
+}
+
+/*
+ * .login-credentials-container-name
+ * 입력 필드 라벨 (예: "Email", "Password")
+ */
+.login-credentials-container-name {
+  color: var(--text-color-primary, #0a0a0a); /* 기본 텍스트 색상 */
+  font-size: 14px; /* 글자 크기 */
+  font-weight: 500; /* 중간 굵기 */
+  line-height: 14px; /* 줄 높이 (100%) */
+  letter-spacing: -0.15px; /* 자간 */
+}
+
+/*
+ * .login-forgot-password
+ * 비밀번호 찾기 링크
+ */
+.login-forgot-password.button {
+  align-self: flex-end; /* 오른쪽 정렬 */
+  color: var(--link-text-color); /* 링크 색상 */
+}
+
+.login-forgot-password.button:hover:not(:disabled) {
+  transform: none;
+  box-shadow: none;
+}
+
+/* -------------------------------------------
+   Divider Section (구분선 섹션)
+   ------------------------------------------- */
+
+/*
+ * .login-divider-section
+ * "Or continue with" 구분선을 감싸는 섹션
+ */
+.login-divider-section {
+  display: flex; /* 플렉스박스 레이아웃 */
+  align-items: center; /* 수직 중앙 정렬 */
+  gap: 8px; /* 선과 텍스트 사이 간격 */
+  align-self: stretch; /* 부모 너비에 맞춤 */
+}
+
+/*
+ * .login-divider-line
+ * 구분선 (좌/우측 선)
+ */
+.login-divider-line {
+  flex: 1; /* 남은 공간을 균등하게 차지 */
+  height: 1.5px; /* 선의 두께 */
+  background-color: var(--divider-line-color); /* 선 색상 */
+}
+
+/* -------------------------------------------
+   Social Button Section (소셜 로그인 버튼 섹션)
+   ------------------------------------------- */
+
+/*
+ * .login-social-button-section
+ * 소셜 로그인 버튼들을 감싸는 섹션
+ */
+.login-social-button-section {
+  display: flex; /* 플렉스박스 레이아웃 */
+  align-items: center; /* 수직 중앙 정렬 */
+  gap: 12px; /* 버튼 간 간격 */
+  align-self: stretch; /* 부모 너비에 맞춤 */
+}
+
+/*
+ * .login-social-button-section > *
+ * 소셜 버튼들이 동일한 너비를 갖도록 설정
+ */
+.login-social-button-section > * {
+  flex: 1; /* 각 버튼이 동일한 비율로 공간 차지 */
+}
+
+/* -------------------------------------------
+   Signup Section (회원가입 링크 섹션)
+   ------------------------------------------- */
+
+/*
+ * .login-signup-section
+ * "Don't have an account? Sign up" 영역
+ */
+.login-signup-section {
+  display: flex; /* 플렉스박스 레이아웃 */
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  gap: 8px; /* 텍스트와 링크 사이 간격 */
+  align-self: stretch; /* 부모 너비에 맞춤 */
+}
+
+/*
+ * .login-signup-link
+ * 회원가입 링크 버튼 스타일 (Button 컴포넌트 오버라이드)
+ */
+.login-signup-link.button {
+  height: auto;
+  padding: 0;
+  font-weight: 500; /* 중간 굵기 */
+  line-height: 24px; /* 줄 높이 */
+  letter-spacing: -0.312px; /* 자간 */
+  color: var(--link-text-color); /* 링크 색상 */
+}
+
+.login-signup-link.button:hover:not(:disabled) {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ============================================
+   Responsive Design (반응형 디자인)
+   ============================================ */
+
+/*
+ * 태블릿 / 데스크탑 (768px 이상)
+ * 화면이 넓어지면 콘텐츠 영역 너비를 고정
+ */
+@media (min-width: 768px) {
+  .login-form-content {
+    width: 450px; /* 고정 너비 */
+  }
+}

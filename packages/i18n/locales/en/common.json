@@ -12,11 +12,14 @@
   "loading": "Loading...",
   "login": "Log in",
   "logout": "Log out",
+  "name": "Name",
   "next": "Next",
   "ok": "OK",
   "password": "Password",
   "retry": "Retry",
   "save": "Save",
   "signup": "Sign up",
-  "submit": "Submit"
+  "submit": "Submit",
+  "switch_to_dark_mode": "Switch to dark mode",
+  "switch_to_light_mode": "Switch to light mode"
 }

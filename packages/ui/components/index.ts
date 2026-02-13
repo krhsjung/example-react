@@ -1,3 +1,2 @@
 export * from "./common";
-export * from "./form/login";
-export * from "./form/signup-popup";
+export * from "./auth";

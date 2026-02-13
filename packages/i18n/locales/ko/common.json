@@ -12,11 +12,14 @@
   "loading": "로딩 중...",
   "login": "로그인",
   "logout": "로그아웃",
+  "name": "이름",
   "next": "다음",
   "ok": "확인",
   "password": "비밀번호",
   "retry": "재시도",
   "save": "저장",
   "signup": "회원가입",
-  "submit": "제출"
+  "submit": "제출",
+  "switch_to_dark_mode": "다크 모드로 전환",
+  "switch_to_light_mode": "라이트 모드로 전환"
 }

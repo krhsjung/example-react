@@ -1,245 +1,249 @@
-/* LoginInput Component Styles */
+/* ===========================================
+   Input Component Styles
+   =========================================== */
 
+/* -------------------------------------------
+   Base Container
+   인풋 컴포넌트의 최외곽 컨테이너
+   ------------------------------------------- */
 .input-container {
-  background: rgba(126, 53, 37, 0.09);
-  position: relative;
-  border-radius: 16px;
-  width: 100%;
-  height: 100%;
-  transition: all 0.2s ease-in-out;
+  border-radius: 8px; /* 모서리 둥글기 */
+  background: var(--input-background); /* 배경색 (CSS 변수 사용) */
+  border: 1px solid var(--input-stroke-color); /* 테두리 색상 */
+
+  position: relative; /* 자식 요소의 절대 위치 기준점 */
+  width: 100%; /* 부모 너비에 맞춤 */
+  height: 100%; /* 부모 높이에 맞춤 */
+  transition: all 0.2s ease-in-out; /* 상태 변화 시 부드러운 전환 효과 */
 }
 
+/* 마우스 호버 시 배경색 유지 */
 .input-container:hover {
-  background: rgba(126, 53, 37, 0.12);
+  background: var(--input-background);
 }
 
+/* 포커스 상태: 내부 요소에 포커스가 있을 때 */
 .input-container:focus-within {
-  background: rgba(126, 53, 37, 0.15);
-  box-shadow: 0 0 0 2px rgba(126, 53, 37, 0.2);
+  background: var(--input-background); /* 포커스 시 배경색 유지 */
+  box-shadow: 0 0 0 3px var(--input-box-shadow-color); /* 외곽 글로우 효과 */
 }
 
-.input-border {
-  position: absolute;
-  border: 1.5px solid transparent;
-  inset: 0;
-  pointer-events: none;
-  border-radius: 16px;
-}
-
+/* -------------------------------------------
+   Input Wrapper
+   입력 필드와 아이콘을 감싸는 래퍼
+   ------------------------------------------- */
 .input-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  height: 100%;
+  display: flex; /* 플렉스박스 레이아웃 */
+  flex-direction: row; /* 가로 방향 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  position: relative; /* 자식 요소의 절대 위치 기준점 */
+  width: 100%; /* 부모 너비에 맞춤 */
+  height: 100%; /* 부모 높이에 맞춤 */
 }
 
+/* -------------------------------------------
+   Input Inner
+   아이콘과 입력 필드를 포함하는 내부 컨테이너
+   ------------------------------------------- */
 .input-inner {
-  box-sizing: border-box;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 8px 12px;
-  position: relative;
-  width: 100%;
-  height: 100%;
+  box-sizing: border-box; /* 패딩을 너비에 포함 */
+  display: flex; /* 플렉스박스 레이아웃 */
+  gap: 8px; /* 자식 요소 간 간격 */
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: flex-start; /* 왼쪽 정렬 */
+  padding: 8px 12px; /* 내부 여백 (상하 8px, 좌우 12px) */
+  position: relative; /* 자식 요소의 절대 위치 기준점 */
+  width: 100%; /* 부모 너비에 맞춤 */
+  height: 100%; /* 부모 높이에 맞춤 */
 }
 
+/* 비밀번호 토글 버튼이 있을 때 오른쪽 여백 확보 */
 .input-container.with-toggle .input-inner {
-  padding-right: 44px;
+  padding-right: 44px; /* 토글 버튼 공간 확보 */
 }
 
+/* -------------------------------------------
+   Password Toggle Button
+   비밀번호 표시/숨김 토글 버튼
+   ------------------------------------------- */
 .input-password-toggle {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(46, 24, 20, 0.6);
-  transition: all 0.2s ease-in-out;
-  border-radius: 4px;
-  opacity: 0.5;
+  position: absolute; /* 부모 기준 절대 위치 */
+  right: 12px; /* 오른쪽에서 12px */
+  top: 50%; /* 상단에서 50% */
+  transform: translateY(-50%); /* 세로 중앙 정렬 보정 */
+  background: none; /* 배경 없음 */
+  border: none; /* 테두리 없음 */
+  cursor: pointer; /* 클릭 커서 */
+  padding: 4px; /* 클릭 영역 확보를 위한 패딩 */
+  display: flex; /* 플렉스박스로 아이콘 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  transition: all 0.2s ease-in-out; /* 상태 변화 시 부드러운 전환 */
+  border-radius: 4px; /* 호버 시 배경 모서리 둥글기 */
+  opacity: 0.5; /* 기본 투명도 */
 }
 
+/* 토글 버튼 호버 상태 */
 .input-password-toggle:hover {
-  color: rgba(46, 24, 20, 0.8);
-  background: rgba(126, 53, 37, 0.1);
-  opacity: 0.8;
+  background: var(--hover-background); /* 호버 배경 (CSS 변수) */
+  opacity: 0.8; /* 투명도 증가 */
 }
 
+/* 토글 버튼 포커스 상태 (키보드 접근성) */
 .input-password-toggle:focus {
-  outline: 2px solid rgba(126, 53, 37, 0.4);
-  outline-offset: 2px;
+  outline: 2px solid var(--focus-outline); /* 포커스 아웃라인 (CSS 변수) */
+  outline-offset: 2px; /* 아웃라인 간격 */
 }
 
+/* 토글 버튼 비활성화 상태 */
 .input-password-toggle:disabled {
-  color: rgba(46, 24, 20, 0.3);
-  cursor: not-allowed;
+  opacity: 0.3; /* 흐린 투명도 */
+  cursor: not-allowed; /* 비활성화 커서 */
 }
 
+/* 비활성화된 토글 버튼 호버 시 배경 없음 */
 .input-password-toggle:disabled:hover {
   background: none;
 }
 
+/* 토글 버튼 내 SVG 아이콘 크기 */
 .input-password-toggle svg {
   width: 20px;
   height: 20px;
 }
 
+/* -------------------------------------------
+   Type Icon
+   입력 타입 아이콘 (이메일, 비밀번호, 사용자명)
+   ------------------------------------------- */
+.input-type-icon {
+  flex-shrink: 0; /* 축소 방지 (항상 원래 크기 유지) */
+  color: var(--input-icon-color); /* 아이콘 색상 (CSS 변수) */
+}
+
+/* -------------------------------------------
+   Password Toggle Icon
+   비밀번호 토글 아이콘 색상
+   ------------------------------------------- */
+.input-password-toggle svg {
+  color: var(--input-icon-color); /* 아이콘 색상 (CSS 변수) */
+}
+
+/* -------------------------------------------
+   Input Field
+   실제 텍스트 입력 필드
+   ------------------------------------------- */
 .input-field {
-  flex: 1;
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 1.4;
-  letter-spacing: -0.075px;
-  color: rgba(46, 24, 20, 0.4);
-  background: transparent;
-  border: none;
-  outline: none;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: color 0.2s ease-in-out;
+  flex: 1; /* 남은 공간 모두 차지 */
+  font-family: Inter; /* 폰트 패밀리 (폴백 포함) */
+  font-weight: 400; /* 일반 굵기 */
+  font-size: 14px; /* 글자 크기 */
+  font-style: normal; /* 글자 스타일 */
+  font-weight: 400; /* 글자 두께 */
+  line-height: normal; /* 줄 높이 */
+  letter-spacing: 1.5px; /* 자간 */
+  color: var(--input-placeholder-color); /* 텍스트 색상 */
+  background: transparent; /* 투명 배경 */
+  border: none; /* 테두리 없음 */
+  outline: none; /* 기본 아웃라인 제거 */
+  min-width: 0; /* 플렉스 아이템 최소 너비 (텍스트 넘침 방지) */
+  overflow: hidden; /* 넘치는 텍스트 숨김 */
+  text-overflow: ellipsis; /* 넘치는 텍스트 말줄임(...) */
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  transition: color 0.2s ease-in-out; /* 색상 변화 시 부드러운 전환 */
 }
 
+/* 플레이스홀더 텍스트 스타일 */
 .input-field::placeholder {
-  color: rgba(46, 24, 20, 0.4);
+  letter-spacing: 1.5px; /* 자간 */
+  color: var(--input-placeholder-color); /* 플레이스홀더 색상 (CSS 변수) */
 }
 
+/* 포커스 시 텍스트 색상 */
 .input-field:focus {
-  color: rgba(46, 24, 20, 0.8);
+  color: var(--input-text-color);
 }
 
+/* 비활성화된 입력 필드 */
 .input-field:disabled {
-  color: rgba(46, 24, 20, 0.2);
-  cursor: not-allowed;
+  color: var(--input-disabled-color); /* 비활성화된 텍스트 색상 */
+  cursor: not-allowed; /* 비활성화 커서 */
 }
 
+/* 비활성화된 입력 필드의 플레이스홀더 */
 .input-field:disabled::placeholder {
-  color: rgba(46, 24, 20, 0.2);
+  color: var(--input-placeholder-color);
 }
 
+/* -------------------------------------------
+   Password Visibility State
+   비밀번호 표시 상태에 따른 자간
+   ------------------------------------------- */
+/* 비밀번호 숨김 상태 (마스킹 문자 간격 좁게) */
+.input-container.with-toggle .input-field {
+  letter-spacing: -1.5px;
+}
+
+/* 비밀번호 표시 상태 (일반 텍스트 간격) */
+.input-container.password-visible .input-field {
+  letter-spacing: 1.5px;
+}
+
+/* -------------------------------------------
+   Disabled State
+   컨테이너 비활성화 상태
+   ------------------------------------------- */
 .input-container.disabled {
-  background: rgba(126, 53, 37, 0.05);
-  cursor: not-allowed;
+  background: var(--input-disabled-background); /* 비활성화 배경 (CSS 변수) */
+  cursor: not-allowed; /* 비활성화 커서 */
 }
 
+/* 비활성화 상태에서 호버 시 배경 변화 없음 */
 .input-container.disabled:hover {
-  background: rgba(126, 53, 37, 0.05);
+  background: var(--input-disabled-background);
 }
 
-/* Size variants */
-.input-container.small {
-  border-radius: 12px;
-}
+/* ===========================================
+   State Variants (상태 변형)
+   =========================================== */
 
-.input-container.small .input-border {
-  border-radius: 12px;
-}
-
-.input-container.small .input-inner {
-  padding: 6px 10px;
-}
-
-.input-container.small .input-field {
-  font-size: 14px;
-}
-
-.input-container.large {
-  border-radius: 20px;
-}
-
-.input-container.large .input-border {
-  border-radius: 20px;
-}
-
-.input-container.large .input-inner {
-  padding: 12px 16px;
-}
-
-.input-container.large .input-field {
-  font-size: 16px;
-}
-
-/* Error state */
+/* -------------------------------------------
+   Error State
+   에러 상태 (유효성 검사 실패 등)
+   ------------------------------------------- */
 .input-container.error {
-  background: rgba(212, 24, 61, 0.09);
-}
-
-.input-container.error:hover {
-  background: rgba(212, 24, 61, 0.12);
+  border: 1px solid var(--input-error-stroke-color);
 }
 
 .input-container.error:focus-within {
-  background: rgba(212, 24, 61, 0.15);
-  box-shadow: 0 0 0 2px rgba(212, 24, 61, 0.2);
+  border-radius: 8px;
+  border: 1px solid var(--input-error-stroke-color);
+  box-shadow: 0 0 0 2.762px var(--input-error-box-shadow-color);
 }
 
-.input-container.error .input-field {
-  color: rgba(212, 24, 61, 0.8);
-}
-
-.input-container.error .input-field::placeholder {
-  color: rgba(212, 24, 61, 0.4);
-}
-
-/* Success state */
-.input-container.success {
+/* -------------------------------------------
+   (현재 사용되지 않음)
+   Success State
+   성공 상태 (유효성 검사 통과 등)
+   ------------------------------------------- */
+/* 초록색 계열 배경 */
+/* .input-container.success {
   background: rgba(34, 197, 94, 0.09);
-}
+} */
 
-.input-container.success:hover {
+/* 호버 시 더 진한 배경 */
+/* .input-container.success:hover {
   background: rgba(34, 197, 94, 0.12);
-}
+} */
 
-.input-container.success:focus-within {
+/* 포커스 시 더 진한 배경 */
+/* 초록색 글로우 */
+/* .input-container.success:focus-within {
   background: rgba(34, 197, 94, 0.15);
-  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
-}
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2); 
+} */
 
-.input-container.success .input-field {
+/* 초록색 텍스트 */
+/* .input-container.success .input-field {
   color: rgba(34, 197, 94, 0.8);
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .input-container {
-    background: rgba(126, 53, 37, 0.15);
-  }
-
-  .input-container:hover {
-    background: rgba(126, 53, 37, 0.18);
-  }
-
-  .input-container:focus-within {
-    background: rgba(126, 53, 37, 0.2);
-  }
-
-  .input-field {
-    color: rgba(255, 255, 255, 0.6);
-  }
-
-  .input-field::placeholder {
-    color: rgba(255, 255, 255, 0.4);
-  }
-
-  .input-field:focus {
-    color: rgba(255, 255, 255, 0.9);
-  }
-}
+} */

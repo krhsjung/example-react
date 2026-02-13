@@ -1,0 +1,250 @@
+/* ============================================
+   Signup Modal Styles
+   회원가입 모달 스타일
+   ============================================ */
+
+/* -------------------------------------------
+   Modal Overlay (모달 오버레이)
+   ------------------------------------------- */
+
+/*
+ * .signup-modal-overlay
+ * 모달 뒤에 표시되는 반투명 배경
+ * 모달에 집중하도록 배경을 어둡게 처리
+ */
+.signup-modal-overlay {
+  position: fixed; /* 스크롤해도 화면에 고정 */
+  top: 0; /* 상단 기준점 */
+  left: 0; /* 좌측 기준점 */
+  right: 0; /* 우측까지 확장 */
+  bottom: 0; /* 하단까지 확장 (전체 화면 덮음) */
+  background: var(--modal-overlay-background); /* 반투명 검정 배경 */
+  display: flex; /* 플렉스박스 레이아웃 */
+  align-items: center; /* 모달을 수직 중앙 정렬 */
+  justify-content: center; /* 모달을 수평 중앙 정렬 */
+  z-index: 1000; /* 최상위 레이어에 표시 */
+  backdrop-filter: blur(4px); /* 배경 블러 효과 (유리 느낌) */
+}
+
+/* -------------------------------------------
+   Modal Container (모달 컨테이너)
+   ------------------------------------------- */
+
+/*
+ * .signup-modal
+ * 모달 창 자체
+ */
+.signup-modal {
+  position: relative; /* 닫기 버튼 위치 기준점 */
+  background: var(--page-background); /* 페이지 배경색 (테마에 따라 변경) */
+  display: flex; /* 플렉스박스 레이아웃 */
+  width: 450px; /* 모달 너비 */
+  padding: 50px 25px; /* 상하 50px, 좌우 25px 여백 */
+  box-sizing: border-box; /* 패딩을 너비에 포함 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  align-items: flex-start; /* 좌측 정렬 (기본값, 아래에서 오버라이드) */
+  gap: 20px; /* 자식 요소 간 간격 */
+  justify-content: center; /* 콘텐츠를 수직 중앙 정렬 */
+  align-items: center; /* 콘텐츠를 수평 중앙 정렬 */
+  border-radius: 16px; /* 모서리 둥글게 */
+  box-shadow: var(--modal-shadow); /* 그림자 효과 (깊이감) */
+}
+
+/* -------------------------------------------
+   Modal Content (모달 콘텐츠)
+   ------------------------------------------- */
+
+/*
+ * .signup-modal-content
+ * 모달 내부 콘텐츠를 감싸는 컨테이너
+ */
+.signup-modal-content {
+  display: flex; /* 플렉스박스 레이아웃 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  align-items: center; /* 수평 중앙 정렬 */
+  gap: 20px; /* 자식 요소 간 간격 */
+  width: 100%; /* 모달 너비에 맞춤 */
+}
+
+/* -------------------------------------------
+   Close Button (닫기 버튼)
+   ------------------------------------------- */
+
+/*
+ * .signup-modal-close-button
+ * 모달 우측 상단의 닫기 버튼 (X)
+ */
+.signup-modal-close-button {
+  position: absolute; /* 모달 기준 절대 위치 */
+  top: 20px; /* 상단에서 20px */
+  right: 20px; /* 우측에서 20px */
+  z-index: 10; /* 모달 콘텐츠 위에 표시 */
+  display: flex; /* 플렉스박스로 아이콘 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  width: 40px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
+  background: none; /* 배경 없음 */
+  border: none; /* 테두리 없음 */
+  border-radius: 8px; /* 모서리 둥글게 */
+  font-size: 28px; /* X 아이콘 크기 */
+  color: var(--text-color-secondary); /* 보조 텍스트 색상 */
+  cursor: pointer; /* 클릭 커서 */
+  transition: all 0.2s ease-in-out; /* 호버 시 부드러운 전환 */
+}
+
+/*
+ * .signup-modal-close-button:hover
+ * 닫기 버튼 호버 상태
+ */
+.signup-modal-close-button:hover {
+  background: var(--hover-background); /* 호버 시 배경색 */
+}
+
+/*
+ * .signup-modal-close-button:disabled
+ * 닫기 버튼 비활성화 상태 (로딩 중 등)
+ */
+.signup-modal-close-button:disabled {
+  cursor: not-allowed; /* 비활성화 커서 */
+  opacity: 0.5; /* 50% 투명도 */
+}
+
+/* -------------------------------------------
+   Title Section (타이틀 섹션)
+   ------------------------------------------- */
+
+/*
+ * .signup-title-section
+ * 회원가입 타이틀과 서브타이틀을 감싸는 컨테이너
+ */
+.signup-title-section {
+  display: flex; /* 플렉스박스 레이아웃 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  justify-content: center; /* 수직 중앙 정렬 */
+  align-items: center; /* 수평 중앙 정렬 */
+  gap: 8px; /* 타이틀과 서브타이틀 사이 간격 */
+  align-self: stretch; /* 부모 너비에 맞춤 */
+}
+
+/*
+ * .signup-title
+ * 메인 타이틀 (예: "Create Your Account")
+ */
+.signup-title {
+  color: var(--text-color-primary, #0a0a0a); /* 기본 텍스트 색상 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  font-size: 30px; /* 글자 크기 */
+  font-weight: 700; /* 굵은 글씨 (bold) */
+  line-height: 36px; /* 줄 높이 (120%) */
+  letter-spacing: 0.396px; /* 자간 */
+}
+
+/*
+ * .signup-subtitle
+ * 서브타이틀 (예: "Create a new account")
+ */
+.signup-subtitle {
+  color: var(--text-color-secondary, #4a5565); /* 보조 텍스트 색상 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  font-size: 16px; /* 글자 크기 */
+  font-weight: 400; /* 일반 굵기 */
+  line-height: 24px; /* 줄 높이 (150%) */
+  letter-spacing: -0.312px; /* 자간 */
+}
+
+/* -------------------------------------------
+   Information Section (정보 입력 섹션)
+   ------------------------------------------- */
+
+/*
+ * .signup-information-section
+ * 이름/이메일/비밀번호 입력 필드들을 감싸는 섹션
+ */
+.signup-information-section {
+  display: flex; /* 플렉스박스 레이아웃 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  gap: 16px; /* 입력 필드 간 간격 */
+  align-self: stretch; /* 부모 너비에 맞춤 */
+}
+
+/*
+ * .signup-information-container
+ * 개별 입력 필드와 라벨을 감싸는 컨테이너
+ */
+.signup-information-container {
+  display: flex; /* 플렉스박스 레이아웃 */
+  flex-direction: column; /* 세로 방향 정렬 */
+  align-items: flex-start; /* 좌측 정렬 */
+  gap: 8px; /* 라벨과 입력 필드 사이 간격 */
+  flex-shrink: 0; /* 축소 방지 */
+  align-self: stretch; /* 부모 너비에 맞춤 */
+}
+
+/*
+ * .signup-information-container-name
+ * 입력 필드 라벨 (예: "Name", "Email", "Password")
+ */
+.signup-information-container-name {
+  color: var(--text-color-primary, #0a0a0a); /* 기본 텍스트 색상 */
+  font-size: 14px; /* 글자 크기 */
+  font-weight: 500; /* 중간 굵기 */
+  line-height: 14px; /* 줄 높이 (100%) */
+  letter-spacing: -0.15px; /* 자간 */
+}
+
+/*
+ * .signup-agreed-to-terms
+ * 이용약관 동의 체크박스 컨테이너
+ */
+.signup-agreed-to-terms {
+  font-size: 14px; /* 체크박스 라벨 글자 크기 */
+}
+
+/* -------------------------------------------
+   Divider Section (구분선 섹션)
+   ------------------------------------------- */
+
+/*
+ * .signup-divider-section
+ * "Or continue with" 구분선을 감싸는 섹션
+ */
+.signup-divider-section {
+  display: flex; /* 플렉스박스 레이아웃 */
+  align-items: center; /* 수직 중앙 정렬 */
+  gap: 8px; /* 선과 텍스트 사이 간격 */
+  align-self: stretch; /* 부모 너비에 맞춤 */
+}
+
+/*
+ * .signup-divider-line
+ * 구분선 (좌/우측 선)
+ */
+.signup-divider-line {
+  flex: 1; /* 남은 공간을 균등하게 차지 */
+  height: 1.5px; /* 선의 두께 */
+  background-color: var(--divider-line-color); /* 선 색상 */
+}
+
+/* -------------------------------------------
+   Social Button Section (소셜 로그인 버튼 섹션)
+   ------------------------------------------- */
+
+/*
+ * .signup-social-button-section
+ * 소셜 로그인 버튼들을 감싸는 섹션
+ */
+.signup-social-button-section {
+  display: flex; /* 플렉스박스 레이아웃 */
+  align-items: center; /* 수직 중앙 정렬 */
+  gap: 12px; /* 버튼 간 간격 */
+  align-self: stretch; /* 부모 너비에 맞춤 */
+}
+
+/*
+ * .signup-social-button-section > *
+ * 소셜 버튼들이 동일한 너비를 갖도록 설정
+ */
+.signup-social-button-section > * {
+  flex: 1; /* 각 버튼이 동일한 비율로 공간 차지 */
+}

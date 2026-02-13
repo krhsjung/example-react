@@ -1,0 +1,31 @@
+/* ============================================
+   Divider Component Styles
+   구분선 컴포넌트 스타일
+   ============================================ */
+
+/*
+ * .divider-section
+ * 구분선과 텍스트를 감싸는 컨테이너
+ * 예: ──── Or continue with ────
+ */
+.divider-section {
+  display: flex; /* 플렉스 컨테이너로 설정하여 자식 요소들을 가로로 배치 */
+  align-items: center; /* 자식 요소들을 수직 중앙 정렬 (선과 텍스트 높이 맞춤) */
+  gap: 8px; /* 선과 텍스트 사이의 간격 */
+  align-self: stretch; /* 부모 컨테이너의 전체 너비를 차지 */
+}
+
+/*
+ * .divider-line
+ * 구분선 (왼쪽/오른쪽 선)
+ * <hr> 태그 사용 시 기본 스타일 리셋 필요
+ */
+.divider-line {
+  flex: 1; /* 남은 공간을 균등하게 차지 (양쪽 선이 동일한 길이) */
+  height: 1.5px; /* 선의 두께 */
+  background-color: var(
+    --divider-line-color
+  ); /* 선 색상 (globals.css에서 정의) */
+  border: none; /* <hr> 기본 border 제거 */
+  margin: 0; /* <hr> 기본 margin 제거 */
+}

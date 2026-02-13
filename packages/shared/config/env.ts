@@ -10,22 +10,33 @@ export const createEnvConfig = () => {
     throw new Error("createEnvConfig can only be used in browser environment");
   }
 
+  // 필수 환경 변수 검증
+  const requiredEnvVars = {
+    VITE_API_ORIGIN: import.meta.env.VITE_API_ORIGIN,
+    VITE_ENV: import.meta.env.VITE_ENV,
+  } as const;
+
+  for (const [key, value] of Object.entries(requiredEnvVars)) {
+    if (!value) {
+      throw new Error(`Required environment variable ${key} is not set`);
+    }
+  }
+
   const env = {
-    API_ORIGIN: import.meta.env.VITE_API_ORIGIN,
-    APP_NAME: import.meta.env.VITE_APP_NAME,
-    ENV: import.meta.env.VITE_ENV,
+    API_ORIGIN: requiredEnvVars.VITE_API_ORIGIN,
+    ENV: requiredEnvVars.VITE_ENV,
     isDevelopment: import.meta.env.DEV,
     isProduction: import.meta.env.PROD,
   } as const;
 
+  const apiBaseURL = `${env.API_ORIGIN}/example/nestjs/${env.ENV}/api`;
   const apiConfig = {
-    baseURL: `${env.API_ORIGIN}/example/nestjs/${env.ENV}/api`,
-    userAPI: `${env.API_ORIGIN}/example/nestjs/${env.ENV}/api/user`,
-    authAPI: `${env.API_ORIGIN}/example/nestjs/${env.ENV}/api/auth`,
+    baseURL: apiBaseURL,
+    userAPI: `${apiBaseURL}/user`,
+    authAPI: `${apiBaseURL}/auth`,
   } as const;
 
   const appConfig = {
-    name: env.APP_NAME,
     version: "1.0.0",
     redirectUri: window.location.origin,
   } as const;

@@ -1,0 +1,123 @@
+/* ============================================
+   Checkbox Component Styles
+   ============================================ */
+
+/*
+ * .checkbox-container
+ * 체크박스 컴포넌트의 최상위 컨테이너이자 클릭 가능한 영역
+ */
+.checkbox-container {
+  display: flex; /* 플렉스 컨테이너로 설정하여 자식 요소들을 유연하게 배치 */
+  align-items: center; /* 자식 요소들을 수직 중앙 정렬 */
+  gap: 0.5em; /* 아이콘과 라벨 사이의 간격 (폰트 크기에 비례) */
+  width: 100%; /* 부모 요소의 전체 너비를 차지 */
+  font-size: 14px; /* 기본 폰트 크기 (em 단위의 기준값, 외부 className에서 오버라이드 가능) */
+}
+
+/*
+ * .checkbox-icon:focus
+ * 키보드 포커스 시 아이콘에 시각적 표시
+ */
+.checkbox-icon:focus {
+  outline: 2px solid var(--focus-outline, rgba(0, 0, 0, 0.3)); /* 포커스 시 아이콘에 2px 아웃라인 표시 */
+  outline-offset: 2px; /* 아웃라인을 요소 외부로 2px 떨어뜨림 */
+  border-radius: 4px; /* 아웃라인 모서리를 둥글게 */
+}
+
+/*
+ * .checkbox-icon
+ * 체크박스 아이콘(체크/미체크)을 감싸는 컨테이너
+ */
+.checkbox-icon {
+  display: flex; /* 플렉스 컨테이너로 설정 */
+  align-items: center; /* SVG 아이콘을 수직 중앙 정렬 */
+  justify-content: center; /* SVG 아이콘을 수평 중앙 정렬 */
+  flex-shrink: 0; /* 공간이 부족해도 아이콘 크기가 줄어들지 않도록 설정 */
+  width: 1em; /* 아이콘 너비 (폰트 크기에 비례하여 자동 조절) */
+  height: 1em; /* 아이콘 높이 (폰트 크기에 비례하여 자동 조절) */
+
+  cursor: pointer; /* 클릭 가능함을 나타내는 포인터 커서 */
+  outline: none; /* 기본 아웃라인 제거 */
+  transition: color 0.1s ease-in-out; /* 색상 변경 시 부드러운 전환 효과 */
+
+  border-radius: 4px;
+  border: 1.306px solid var(--checkbox-border-color);
+  background: var(--checkbox-background);
+  box-shadow: 0 1px 2px 0 var(--checkbox-box-shadow-color);
+}
+
+/*
+ * .checkbox-icon svg
+ * 아이콘 컨테이너 내부의 SVG 요소
+ */
+.checkbox-icon svg {
+  width: 100%; /* 부모 컨테이너의 전체 너비를 차지 */
+  height: 100%; /* 부모 컨테이너의 전체 높이를 차지 */
+}
+
+/*
+ * .checkbox-container.checked .checkbox-icon
+ * 체크된 상태의 아이콘 스타일
+ */
+.checkbox-container.checked .checkbox-icon {
+  border-radius: 4px;
+  border: 1px solid var(--checkbox-checked-border-color);
+  background: var(--checkbox-checked-background);
+  box-shadow: 0 1px 2px 0 var(--checkbox-box-shadow-color);
+  color: var(--checkbox-checked-icon-color);
+}
+
+/*
+ * .checkbox-label
+ * 체크박스 옆의 텍스트 라벨
+ */
+.checkbox-label {
+  font-family:
+    "Inter", sans-serif; /* Inter 폰트 사용, 없으면 시스템 산세리프 폰트 */
+  font-weight: 400; /* 일반 굵기 */
+  font-size: 1em; /* 컨테이너 폰트 크기와 동일 (상속) */
+  line-height: 1.4; /* 줄 높이 (가독성을 위해 1.4배) */
+  color: var(--text-color-secondary, #4a5565); /* 보조 텍스트 색상 */
+  cursor: default; /* 기본 커서 (라벨은 클릭 영역이 아님) */
+  margin: 0; /* 기본 마진 제거 */
+  flex: 1; /* 남은 공간을 모두 차지하여 라벨이 길어도 레이아웃 유지 */
+  letter-spacing: -0.07px; /* 약간의 자간 조정으로 가독성 향상 */
+}
+
+/* ============================================
+   Disabled State (비활성화 상태)
+   ============================================ */
+
+/*
+ * .checkbox-container.disabled
+ * 비활성화된 체크박스 컨테이너
+ */
+.checkbox-container.disabled {
+  opacity: 0.5; /* 50% 투명도로 비활성화 상태를 시각적으로 표시 */
+  pointer-events: none; /* 모든 마우스/터치 이벤트 무시 */
+  cursor: not-allowed; /* 클릭 불가능함을 나타내는 커서 */
+}
+
+/*
+ * .checkbox-container.disabled .checkbox-icon
+ * 비활성화 상태의 아이콘 색상
+ */
+.checkbox-container.disabled .checkbox-icon {
+  color: var(--checkbox-disabled-icon-color);
+}
+
+/*
+ * .checkbox-container.disabled .checkbox-label
+ * 비활성화 상태의 라벨 스타일
+ */
+.checkbox-container.disabled .checkbox-label {
+  color: var(--checkbox-disabled-label-color);
+}
+
+/*
+ * .checkbox-container.disabled .checkbox-icon
+ * 비활성화 상태의 아이콘 커서 스타일
+ */
+.checkbox-container.disabled .checkbox-icon {
+  cursor: not-allowed; /* 클릭 불가능함을 나타내는 커서 */
+}

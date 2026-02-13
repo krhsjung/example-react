@@ -25,6 +25,7 @@
   "devDependencies": {
     "@example/config-eslint": "workspace:*",
     "@example/config-typescript": "workspace:*",
+    "@types/node": "^22",
     "@types/react": "^19.1.11",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.1",

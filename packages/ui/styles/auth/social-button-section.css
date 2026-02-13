@@ -1,0 +1,24 @@
+/* ============================================
+   Social Button Section Styles
+   소셜 로그인 버튼 섹션 스타일
+   ============================================ */
+
+/*
+ * .social-button-section
+ * 소셜 로그인 버튼들을 가로로 나열하는 컨테이너
+ * 예: [Google 로그인] [Apple 로그인]
+ */
+.social-button-section {
+  display: flex; /* 플렉스박스 레이아웃 (가로 정렬) */
+  gap: 12px; /* 버튼 간 간격 */
+  align-self: stretch; /* 부모 컨테이너의 전체 너비를 차지 */
+}
+
+/*
+ * .social-button-section > *
+ * 모든 자식 요소 (소셜 버튼들)에 동일한 너비 부여
+ * flex: 1로 남은 공간을 균등하게 분배
+ */
+.social-button-section > * {
+  flex: 1; /* 각 버튼이 동일한 비율로 공간 차지 */
+}
