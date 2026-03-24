@@ -1,0 +1,12 @@
+{
+  "home_dashboard": "Dashboard",
+  "home_menu": "Menu",
+  "home_menu_home": "Home",
+  "home_menu_webcam": "Webcam",
+  "home_menu_settings": "Settings",
+  "home_menu_collapse": "Collapse menu",
+  "home_menu_expand": "Expand menu",
+  "home_welcome": "Welcome, {{name}}!",
+  "home_welcome_message": "Have a great day.",
+  "home_notifications": "Notifications"
+}

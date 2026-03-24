@@ -8,6 +8,7 @@ import common from "./common.json";
 import auth from "./auth.json";
 import error from "./error.json";
 import serverError from "./server_error.json";
+import home from "./home.json";
 
 /**
  * English translation resources
@@ -31,4 +32,5 @@ export default {
   ...auth, // Authentication related (login, signup)
   ...error, // Error messages
   ...serverError, // Server error messages
+  ...home, // Home dashboard
 };

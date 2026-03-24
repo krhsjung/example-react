@@ -8,6 +8,7 @@ import common from "./common.json";
 import auth from "./auth.json";
 import error from "./error.json";
 import serverError from "./server_error.json";
+import home from "./home.json";
 
 /**
  * 한국어 번역 리소스
@@ -31,4 +32,5 @@ export default {
   ...auth, // 인증 관련 (로그인, 회원가입)
   ...error, // 에러 메시지
   ...serverError, // 서버 에러 메시지
+  ...home, // 홈 대시보드
 };

@@ -1,0 +1,12 @@
+{
+  "home_dashboard": "대시보드",
+  "home_menu": "메뉴",
+  "home_menu_home": "홈",
+  "home_menu_webcam": "웹캠",
+  "home_menu_settings": "설정",
+  "home_menu_collapse": "메뉴 접기",
+  "home_menu_expand": "메뉴 펼치기",
+  "home_welcome": "환영합니다, {{name}}님!",
+  "home_welcome_message": "오늘도 좋은 하루 보내세요.",
+  "home_notifications": "알림"
+}
