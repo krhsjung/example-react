@@ -10,6 +10,8 @@ import "@example/i18n";
 interface LoginPageProps {
   socialSignInFlowType?: SocialSignInFlowType;
   onLoginSuccess?: (userDto: UserDto) => void;
+  initialShowSignup?: boolean;
+  initialEmail?: string;
 }
 
 /* OAuth 팝업 사이즈 설정 */
@@ -29,9 +31,11 @@ const apiClient = createApiClient(apiConfig.baseURL);
 const LoginPage: React.FC<LoginPageProps> = ({
   socialSignInFlowType,
   onLoginSuccess,
+  initialShowSignup = false,
+  initialEmail,
 }) => {
   const { t } = useTranslation();
-  const [showSignupModal, setShowSignupModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(initialShowSignup);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const oauthCleanupRef = useRef<(() => void) | null>(null);
 
@@ -40,6 +44,15 @@ const LoginPage: React.FC<LoginPageProps> = ({
     return () => {
       oauthCleanupRef.current?.();
     };
+  }, []);
+
+  /* 브라우저 뒤로가기/앞으로가기 시 모달 상태 동기화 */
+  useEffect(() => {
+    const handlePopState = () => {
+      setShowSignupModal(window.location.pathname === "/signup");
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
   const handleLogin = useCallback(
@@ -178,14 +191,21 @@ const LoginPage: React.FC<LoginPageProps> = ({
       <LoginForm
         onLogin={handleLogin}
         onSocialLogin={handleSnsLogin}
-        onSignup={() => setShowSignupModal(true)}
+        onSignup={() => {
+          setShowSignupModal(true);
+          window.history.pushState(null, "", "/signup");
+        }}
         socialSignInFlowType={socialSignInFlowType}
       />
       <SignupModal
         isOpen={showSignupModal}
-        onClose={() => setShowSignupModal(false)}
+        onClose={() => {
+          setShowSignupModal(false);
+          window.history.pushState(null, "", "/");
+        }}
         onSignUp={handleSignup}
         onSocialLogin={handleSnsLogin}
+        initialEmail={initialEmail}
       />
     </>
   );

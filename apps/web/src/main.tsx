@@ -15,6 +15,14 @@ const apiClient = createApiClient(apiConfig.authAPI);
 
 const App = () => {
   const { t } = useTranslation();
+  const [path, setPath] = useState(window.location.pathname);
+
+  /* 브라우저 뒤로가기/앞으로가기 감지 */
+  useEffect(() => {
+    const handlePopState = () => setPath(window.location.pathname);
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   /* 언어 변경 시 document.title 업데이트 */
   useEffect(() => {
@@ -42,6 +50,8 @@ const App = () => {
 
   const handleLoginSuccess = async (userDto: UserDto) => {
     setUser(userDto);
+    window.history.pushState(null, "", "/");
+    setPath("/");
   };
 
   const handleLogout = async () => {
@@ -52,6 +62,8 @@ const App = () => {
       /* 로그아웃 실패 시에도 클라이언트 상태 초기화 */
       setUser(null);
     }
+    window.history.pushState(null, "", "/");
+    setPath("/");
   };
 
   if (checkingAuth) {
@@ -70,6 +82,8 @@ const App = () => {
     <LoginPage
       onLoginSuccess={handleLoginSuccess}
       socialSignInFlowType={SocialSignInFlowType.POPUP}
+      initialShowSignup={path === "/signup"}
+      initialEmail={new URLSearchParams(window.location.search).get("email") ?? undefined}
     />
   );
 };

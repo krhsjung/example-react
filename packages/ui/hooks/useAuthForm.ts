@@ -32,6 +32,7 @@ export interface AuthFormErrors {
 
 export interface UseAuthFormOptions {
   mode: AuthMode;
+  initialEmail?: string;
   onLogin?: (email: string, password: string) => Promise<void> | void;
   onSignUp?: (email: string, password: string, name: string) => Promise<void>;
   onSocialLogin?: (provider: SocialProvider) => Promise<void> | void;
@@ -73,15 +74,17 @@ const initialErrors: AuthFormErrors = {
 
 export const useAuthForm = ({
   mode,
+  initialEmail,
   onLogin,
   onSignUp,
   onSocialLogin,
   socialSignInFlowType,
 }: UseAuthFormOptions): UseAuthFormReturn => {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState<AuthFormData>(
-    createInitialFormData(),
-  );
+  const [formData, setFormData] = useState<AuthFormData>(() => ({
+    ...createInitialFormData(),
+    ...(initialEmail ? { email: initialEmail } : {}),
+  }));
   const [errors, setErrors] = useState<AuthFormErrors>(initialErrors);
   const [loadingProvider, setLoadingProvider] = useState<LoadingProvider>(null);
 

@@ -191,11 +191,13 @@ const InformationSection: React.FC<InformationSectionProps> = ({
 interface SignupModalContentProps {
   onSignUp: (email: string, password: string, name: string) => Promise<void>;
   onSocialLogin?: (provider: SocialProvider) => Promise<void> | void;
+  initialEmail?: string;
 }
 
 const SignupModalContent: React.FC<SignupModalContentProps> = ({
   onSignUp,
   onSocialLogin,
+  initialEmail,
 }) => {
   const { t } = useTranslation();
   const {
@@ -209,6 +211,7 @@ const SignupModalContent: React.FC<SignupModalContentProps> = ({
     handleSocialSubmit,
   } = useAuthForm({
     mode: "signup",
+    initialEmail,
     onSignUp,
     onSocialLogin,
   });
@@ -241,6 +244,7 @@ export interface SignupModalProps {
   onClose: () => void;
   onSignUp: (email: string, password: string, name: string) => Promise<void>;
   onSocialLogin?: (provider: SocialProvider) => Promise<void> | void;
+  initialEmail?: string;
 }
 
 export const SignupModal: React.FC<SignupModalProps> = ({
@@ -248,6 +252,7 @@ export const SignupModal: React.FC<SignupModalProps> = ({
   onClose,
   onSignUp,
   onSocialLogin,
+  initialEmail,
 }) => {
   const { t } = useTranslation();
   const modalRef = useRef<HTMLDivElement>(null);
@@ -331,7 +336,7 @@ export const SignupModal: React.FC<SignupModalProps> = ({
         >
           ×
         </Button>
-        <SignupModalContent onSignUp={onSignUp} onSocialLogin={onSocialLogin} />
+        <SignupModalContent onSignUp={onSignUp} onSocialLogin={onSocialLogin} initialEmail={initialEmail} />
       </div>
     </div>
   );
